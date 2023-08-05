@@ -1,0 +1,63 @@
+.field_set_box {
+  border: 1px solid #bbb !important;
+  padding: 2px 4px !important;
+  border-radius: 4px;
+  width: 100%;
+  legend {
+    float: none;
+    width: max-content;
+    padding: 0 4px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    line-height: normal;
+    color: #1c1b1f;
+    margin: 0;
+    font-size: 14px;
+    border-bottom: 0 !important;
+    @include md {
+      font-size: 12px;
+    }
+  }
+  .ant-input {
+    width: 100%;
+    border: none !important;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1c1b1f !important;
+
+    &:focus {
+      box-shadow: none !important ;
+      border-inline-end-width: 0 !important;
+    }
+  }
+  .ant-input-affix-wrapper {
+    border: 0 !important;
+    &:focus {
+      box-shadow: none !important ;
+      border-inline-end-width: 0 !important;
+    }
+  }
+  .ant-select {
+    width: 100%;
+    border: none !important;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1c1b1f !important;
+    box-shadow: none !important ;
+  }
+
+  .ant-select-selector {
+    border: none !important;
+  }
+  .ant-picker {
+    width: 100%;
+    border: none !important;
+    color: #1c1b1f !important;
+    &-focused {
+      box-shadow: none !important ;
+      border-inline-end-width: 0 !important;
+    }
+  }
+}

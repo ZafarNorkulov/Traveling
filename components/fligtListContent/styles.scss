@@ -1,0 +1,25 @@
+.filter{
+    .ant-slider-rail{
+        height: 2px!important;
+    }
+    .ant-slider:hover{
+        .ant-slider-track{
+            
+            background:  #121;
+        }
+    }
+    .ant-slider-track{
+        height: 2px;
+        background: #121;
+
+    }
+    .ant-slider-handle{
+        &::after{
+            background: #8DD3BB!important;
+            box-shadow: 0 0 0 2px #8DD3BB!important;
+            inset-block-start: -1px;
+        }
+
+       
+    }
+}

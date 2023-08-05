@@ -1,0 +1,22 @@
+.travel-price {
+  &-card {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 12px;
+  }
+  &-card:nth-child(1) {
+    background-image: url("../../public/images/Melbourne.png");
+  }
+  &-card:nth-child(2) {
+    background-image: url("../../public/images/Paris.png");
+  }
+  &-card:nth-child(3) {
+    background-image: url("../../public/images/London.png");
+  }
+  &-card:nth-child(4) {
+    background-image: url("../../public/images/Columbia.png");
+  }
+  .city-name,.city-price , .city-desc {
+    font-family: "Montserrat";
+  }
+}

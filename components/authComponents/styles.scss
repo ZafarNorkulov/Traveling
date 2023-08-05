@@ -1,0 +1,82 @@
+.authContainer {
+  max-width: 1440px;
+  padding: 50px;
+  margin: 0 auto;
+  @include md {
+    padding: 24px;
+  }
+  h3{
+    font-family: "TradeGothic LT Extended";
+  }
+  .auth-desc {
+    font-family: "Montserrat";
+  }
+  .forgot-btn {
+    font-family: "Montserrat";
+    font-size: 14px;
+    font-weight: 500;
+    color: #ff8682;
+  }
+  .auth-btn {
+    font-family: "Montserrat";
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 32px;
+    background: #8dd3bb;
+  }
+  .already-text {
+    font-family: "Montserrat";
+    color: #112211;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    a {
+      font-weight: 600;
+    }
+  }
+  .or-elements {
+    font-size: 14px;
+    color: #112211;
+    opacity: 0.5;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  .slick-dots {
+    li {
+      height: 5px;
+      background: #fff !important;
+      border-radius: 5px !important;
+    }
+    .slick-active {
+      width: 32px !important;
+      background: #8dd3bb;
+      button {
+        background: #8dd3bb !important;
+        height: 5px !important;
+        border-radius: 5px;
+      }
+    }
+  }
+  .backLogin-elements {
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: "#112211";
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 4rem;
+    margin-bottom: 20px;
+    a{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+  }
+}
+

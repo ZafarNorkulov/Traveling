@@ -1,0 +1,51 @@
+.hero {
+  position: relative;
+  &-img {
+    width: 100%;
+    max-height: 537px;
+  }
+  &-text {
+    position: absolute;
+    top: 80px;
+    @include lg{
+      top: 30px;
+    }
+  }
+  &-title {
+    max-width: 440px;
+    font-size: 45px;
+    font-weight: 700;
+    color: #fff;
+    @include xl{
+      max-width: 380px;
+      font-size: 35px;
+      font-weight: 500;
+    }
+    @include md{
+      max-width: 300px;
+      font-size: 28px;
+    }
+    @include sm{
+      max-width: 220px;
+      font-size: 18px;
+    }
+  }
+  &-desc {
+    font-family: "Montserrat";
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    @include xl{
+      font-size: 18px;
+    }
+    @include md{
+      font-size: 16px;
+      font-weight: 400;
+    }
+    @include sm{
+      font-size:14px;
+    }
+  }
+ 
+
+}

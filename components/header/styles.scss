@@ -1,0 +1,27 @@
+.header{
+     .ant-layout-header{
+      padding: 0 20px!important;
+     }
+    .ant-menu-item-selected{
+        color: #000!important;
+    }
+    .ant-menu-title-content{
+      border-color: #8DD3BB!important;
+    }
+    
+  button{
+    line-height: normal;
+    padding: 10px 24px;
+    border-radius: 8px;
+   
+  }
+  .login-btn{
+    background: transparent;
+    color: var(--black-green);
+    font-weight: 600;
+}   
+.sign-btn{
+    color: #fff;
+    background: #112211;
+}
+}

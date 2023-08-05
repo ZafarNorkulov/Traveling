@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+@import "./globals.scss";
+@import "./variables/mixins";
+@import "./variables/fonts.scss";
+@import "./Home.module.css";
+@import "../components/header/styles.scss";
+@import "../components/hero/styles.scss";
+@import "../components/helperComponents/styles.scss";
+@import "../components/authComponents/styles.scss";
+@import "../components/filedSet/styles.scss";
+@import "../components/map/styles.scss";
+@import "../components/travelPrice/styles.scss";
+@import "../components/footer/styles.scss";
+@import "../components/placeOrder/styles.scss";
+@import "../components/fligtListContent/styles.scss";

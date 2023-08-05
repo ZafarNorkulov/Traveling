@@ -1,0 +1,59 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  color: #121;
+}
+
+.myContainer{
+  max-width: 1440px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.mygreen-color{
+  color: #8DD3BB;
+}
+.mygreen-bgColor{
+  background: #8DD3BB;
+}
+.myred-color{
+  color:#FF8682;
+}
+.ant-btn{
+  border-radius: 4px!important;
+}
+.main-btn{
+  background: #8DD3BB!important;
+  color: #000!important;
+  border-color: #8DD3BB!important;
+  font-family: "Montserrat"!important;
+}
+body{
+  background: #FAFBFC;
+}
+// .ant-picker-active-bar{
+//   background: #8DD3BB!important;
+// }
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
+  }
+  body {
+    color: #1C1B1F;
+    background: #FAFBFC;
+  }
+}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
