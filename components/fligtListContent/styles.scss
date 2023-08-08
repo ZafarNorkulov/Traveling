@@ -22,4 +22,12 @@
 
        
     }
+   
+}
+.race-card{
+    .card-img{
+        @include lg{
+            width: 100%;
+        }
+    }
 }

@@ -10,8 +10,8 @@ import {AiFillInstagram} from "react-icons/ai"
 const FooterComponent = () => {
     const {Footer} = Layout
   return (
-    <Footer className='footer bg-[#8DD3BB] mt-[134px]'>
-      <div className="myContainer ">
+    <Footer className='footer bg-[#8DD3BB] px-0'>
+      <div className="myContainer">
         <div className="footer-top-content mb-[64px] relative -mt-[12%] flex justify-between bg-[#CDEAE1] px-6 rounded-[20px] shadow-[0px 4px 16px 0px rgba(17, 34, 17, 0.05)]">
            <div className='py-6'>
            <h2 className='xl:text-[44px] md:text-[34px] text-[25px] font-bold xl:max-w-[364px] md:max-w-[300px] max-w-[200px] xl:leading-[54px] md:leading-[40px] leading-[30px]'>Subscribe Newsletter</h2>

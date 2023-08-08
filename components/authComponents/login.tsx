@@ -46,7 +46,7 @@ const LoginPage = () => {
           <h3 className="mt-[64px] text-[40px] font-bold text-black mb-4">Login</h3>
           <span className="auth-desc text-base text-[#121] font-normal opacity-75">Login to access your Golobe account</span>
           <Form onFinish={onFinish} layout="vertical" className="w-full mt-[48px] ">
-            <FieldSetComponent title="Email" className="w-full lg:w-full md:w-[680px]">
+            <FieldSetComponent title="Email" className="w-full ">
               <Input
               className="w-full"
                 value={user?.email}
@@ -54,14 +54,14 @@ const LoginPage = () => {
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
               />
             </FieldSetComponent>
-            <FieldSetComponent title="Password" className="w-full lg:w-full md:w-[680px] mt-3">
+            <FieldSetComponent title="Password" className="w-full  mt-3">
               <Input.Password
                className="w-full"
                 value={user?.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </FieldSetComponent>
-            <div className="flex sm:flex-row flex-column items-baseline justify-between">
+            <div className="w-full flex sm:flex-row flex-column items-baseline justify-between">
               <Form.Item
                 name="remember"
                 valuePropName="checked"
@@ -69,11 +69,9 @@ const LoginPage = () => {
               >
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
-              <Form.Item>
                 <div className="forgot-btn">
                   <Link href={"/auth/forgot-password"}>Forgot Password?</Link>
                 </div>
-              </Form.Item>
             </div>
             <button
               className="w-full px-3 py-3 rounded auth-btn mt-[40px]"
