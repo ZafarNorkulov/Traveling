@@ -25,9 +25,36 @@
    
 }
 .race-card{
+ 
     .card-img{
         @include lg{
             width: 100%;
         }
     }
+    .price-line{
+        width: 80%;
+        @include md{
+            width: 100%;
+        }
+        &::after{
+
+            width: 0;
+            content: "";
+            height: 4px;
+            border-collapse: separate;
+            background: #aff9df96;
+            position:absolute;
+            bottom: 0;
+            left: 0;
+            transition: .5s ease-in-out;
+            
+        }
+        &:hover::after{
+            width: 80%;
+            @include md{
+                width: 100%;
+            }
+        }
+    }
+ 
 }
