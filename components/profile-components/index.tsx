@@ -77,6 +77,7 @@ const ProfileComponent = () => {
             <div
               className="col-span-4 cursor-pointer flex justify-between py-[6px]"
               onClick={() => handleClick(index, false)}
+              key={index}
             >
               <h3
                 className={`font-semibold md:text-base text-xs text-[#8dd3bb]`}
@@ -93,6 +94,7 @@ const ProfileComponent = () => {
             <div
               className="col-span-4 cursor-pointer flex justify-between py-[6px]"
               onClick={() => handleClick(index, true)}
+              key={index}
             >
               <h3 className="font-semibold md:text-base text-[#121] text-xs ">
                 {item?.title}

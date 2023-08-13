@@ -55,6 +55,7 @@ const TicketBookings = () => {
             <div
               className="w-[49%] flex cursor-pointer items-center gap-x-2 py-[6px]"
               onClick={() => handleClick(index, false)}
+              key={index}
             >
               {item?.title}
             </div>
