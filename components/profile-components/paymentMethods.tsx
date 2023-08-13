@@ -52,7 +52,7 @@ const PaymentMethods = () => {
         </div>
       </div>
       <Modal title="" open={addCardModalStatus} onCancel={()=>setOpenModalStatus(false)} footer={false}>
-        <div className="mt-5">
+        <div className="py-11 px-10">
           <h3 className="text-black text-[40px] font-bold">Add a new Card</h3>
           <Form className="grid grid-cols-12 gap-6 mt-12">
             <FieldSetComponent title="Card Number" className="col-span-12">

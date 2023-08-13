@@ -2,6 +2,7 @@ import React from "react";
 import FieldSetComponent from "../filedSet";
 import { Button, DatePicker, Select } from "antd";
 import { BsSendFill } from "react-icons/bs";
+import Link from "next/link";
 // const Swap = (
 //     <svg
 //       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +30,7 @@ const PlaceOrderForHome = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="From - To"
         >
-          <Select defaultValue={"la-ka"} >
+          <Select defaultValue={"la-ka"} bordered={false}>
             <Select.Option value="la-ka">Lahore - Karachi</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -37,7 +38,7 @@ const PlaceOrderForHome = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Trip"
         >
-          <Select defaultValue={"return"}>
+          <Select defaultValue={"return"} bordered={false}>
             <Select.Option value="return">Return</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -45,22 +46,24 @@ const PlaceOrderForHome = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Depart- Return"
         >
-          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" />
+          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" bordered={false}/>
         </FieldSetComponent>
         <FieldSetComponent
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Passenger - Class"
         >
-          <Select defaultValue={"economy"}>
+          <Select defaultValue={"economy"} bordered={false}>
             <Select.Option value="economy">1 Passenger, Economy</Select.Option>
           </Select>
         </FieldSetComponent>
         <div className="lg:col-span-8 sm:col-span-5 sm:block hidden"></div>
         <div className="lg:col-span-4 sm:col-span-7 col-span-12 text-end flex items-center justify-end gap-3">
           <span>+ Add Promo Code</span>
+            <Link href={"/flight-list"}>
           <Button size="large" className="flex items-center gap-1">
             <BsSendFill /> Show Filghts
           </Button>
+          </Link>
         </div>
       </div>
     </div>

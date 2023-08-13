@@ -1,13 +1,13 @@
 import { Button, Checkbox, Collapse, Divider, Select, Slider } from "antd";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Emirates from "../../public/images/emirates.png";
 import { AiOutlineHeart } from "react-icons/ai";
 const FlightListContent = () => {
   const { Panel } = Collapse;
-
+  const [activeTab,setActiveTab] = useState<number>(0)
   const [byPrice, setByPrice] = useState([
     {
       title: "Cheapest",
@@ -38,7 +38,9 @@ const FlightListContent = () => {
       active: false,
     },
   ]);
-
+useEffect(()=>{
+  setActiveTab(Number(localStorage.getItem("byPriceIndex")) ?? 0)
+},[])
   const handleClick = (index: number, status: boolean) => {
     const checkstatus_elements = [...byPrice];
     checkstatus_elements.forEach((item) => {
@@ -48,6 +50,8 @@ const FlightListContent = () => {
       } else {
         checkstatus_elements[index].active = !status;
       }
+      setActiveTab(index)
+      localStorage.setItem("byPriceIndex", String(index))
       setByPrice([...checkstatus_elements]);
     });
   };
@@ -125,48 +129,34 @@ const FlightListContent = () => {
         <Divider type="vertical" className="md:flex hidden h-full m-0" />
       </div>
       <div className="race-card lg:col-span-8 md:col-span-9 col-span-12">
-        <div className="race-content flex md:flex-row flex-col gap-x-6 lg:justify-between bg-white shadow-lg rounded-xl px-6  items-center">
+        <div className="race-content relative w-full grid grid-cols-12 gap-x-6 lg:justify-between bg-white shadow-lg rounded-xl px-6 py-4 items-center gap-y-4">
           <>{byPrice?.map((item, index) =>
-            item?.active ? (
-              <div className="relative " key={item?.index}>
-                <div className={`flex py-6 border-b-4 border-[#8dd3bb] m-0`}>
-                  <div
-                    className={`pl-2 cursor-pointer xl:w-[190px] lg:w-[150px] w-full h-[52px] justify-center flex flex-col gap-2 `}
-                    onClick={() => handleClick(index, false)}
-                  >
-                    <h5 className="sm:text-base text-sm font-semibold whitespace-nowrap">
-                      {item?.title}
-                    </h5>
-                    <p className="opacity-40 text-sm md:whitespace-normal whitespace-nowrap">{item?.desc}</p>
-                  </div>
-                  {index !== 3 ? (
-                    <Divider type="vertical" className={`w-px h-auto lg:block hidden m-0 `} />
-                  ) : (
-                    ""
-                  )}
-                </div>
+          item?.active ? (
+            <div className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer" key={index} onClick={()=>handleClick(index,false)}>
+              <div className="flex flex-col gap-y-2">
+              <h4 className="text-base font-semibold text-[#121] ">{item?.title}</h4>
+              <p className="text-sm opacity-40">{item?.desc}</p>
               </div>
-            ) : (
-              <div className="relative" key={item?.index}>
-                <div className={`flex py-6 price-line border-b-4 border-transparent m-0`}>
-                <div
-                  className={`pl-2 cursor-pointer  xl:w-[190px] lg:w-[150px]  w-full h-[52px] justify-center flex flex-col gap-2 `}
-                  onClick={() => handleClick(index, true)}
-                >
-                  <h5 className="sm:text-base text-sm font-semibold whitespace-nowrap">
-                      {item?.title}
-                    </h5>
-                    <p className="opacity-40 text-sm md:whitespace-normal whitespace-nowrap">{item?.desc}</p>
-                </div>
-                {index !== 3 ? (
-                  <Divider type="vertical" className="w-px h-auto lg:block hidden lg:m-0" />
-                ) : (
-                  ""
-                )}
-              </div>
-              </div>
-            )
-          )}
+              {index !== 3 && (
+
+              <Divider type="vertical" className="h-auto sm:block hidden"/>
+              )}
+           </div>
+          ):(
+            <div className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer" key={index} onClick={()=>handleClick(index,false)}>
+            <div className="flex flex-col gap-y-2">
+            <h4 className="text-base font-semibold text-[#121] ">{item?.title}</h4>
+            <p className="text-sm opacity-40">{item?.desc}</p>
+            </div>
+            {index !== 3 && (
+
+            <Divider type="vertical" className="h-auto sm:block hidden"/>
+            )}
+         </div>
+          )
+            )}
+            
+            <span className={`hidden sm:block w-[19%] h-1 absolute bottom-0 duration-200 ease-linear bg-[#8dd3bb] ${activeTab ===0 ? "left-[2.7%]" : activeTab ===1 ?"left-[27%]":activeTab ===2? "left-[51.3%]" :"left-[75.7%]"} `}/>
 </>
         </div>
         <div className="grid grid-cols-12 mt-6">

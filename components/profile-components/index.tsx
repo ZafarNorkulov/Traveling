@@ -7,10 +7,10 @@ import { Divider } from "antd";
 import UserMe from "./user-me";
 import TicketBookings from "./ticketBookings";
 import PaymentMethods from "./paymentMethods";
+import { useRouter } from "next/router";
 
 const ProfileComponent = () => {
   const [activeMainTab, setActiveMainTab] = useState<number>(0);
-
   const [mainTabs, setMainTabs] = useState([
     {
       title: "Account",
@@ -75,9 +75,11 @@ const ProfileComponent = () => {
         {mainTabs.map((item, index) =>
           item?.active ? (
             <div
+              id={index === 0 ? "#account": index===2 ? "#payment": ""}
               className="col-span-4 cursor-pointer flex justify-between py-[6px]"
               onClick={() => handleClick(index, false)}
               key={index}
+              
             >
               <h3
                 className={`font-semibold md:text-base text-xs text-[#8dd3bb]`}
@@ -110,7 +112,7 @@ const ProfileComponent = () => {
           <div className={`w-[29%] absolute  bottom-0 h-1 duration-300 ease-in rounded bg-[#CDEAE1] ${activeMainTab === 0 ? "left-4" : activeMainTab ===1 ? "left-[34%]" : "left-[66.5%]"}`}></div>
       </div>
       <div className="mt-10">
-        {activeMainTab === 0 ? (
+        {activeMainTab === 0  ? (
           <UserMe />
         ) : activeMainTab === 1 ? (
           <TicketBookings />

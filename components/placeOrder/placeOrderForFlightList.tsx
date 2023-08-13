@@ -12,7 +12,7 @@ const PlaceOrderForFlightList = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="From - To"
         >
-          <Select defaultValue={"la-ka"} >
+          <Select defaultValue={"la-ka"} bordered={false}>
             <Select.Option value="la-ka">Lahore - Karachi</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -20,7 +20,7 @@ const PlaceOrderForFlightList = () => {
           className="lg:col-span-2 sm:col-span-6 col-span-12"
           title="Trip"
         >
-          <Select defaultValue={"return"}>
+          <Select defaultValue={"return"} bordered={false}>
             <Select.Option value="return">Return</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -28,13 +28,13 @@ const PlaceOrderForFlightList = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Depart- Return"
         >
-          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" />
+          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" bordered={false}/>
         </FieldSetComponent>
         <FieldSetComponent
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Passenger - Class"
         >
-          <Select defaultValue={"economy"}>
+          <Select defaultValue={"economy"} bordered={false}>
             <Select.Option value="economy">1 Passenger, Economy</Select.Option>
           </Select>
         </FieldSetComponent>
