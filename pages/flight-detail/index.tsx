@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
+import userLayout from '../../layouts/userLayout'
 
 const FlightDetail = () => {
   return (
@@ -15,3 +16,4 @@ const FlightDetail = () => {
 }
 
 export default FlightDetail
+FlightDetail.layout = userLayout
