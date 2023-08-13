@@ -28,6 +28,10 @@ const ProfileComponent = () => {
 
   useEffect(() => {
     setActiveMainTab(Number(localStorage.getItem("activeMainTabIndex")) ?? 0);
+    mainTabs?.map((tab) => {
+      tab.active = false;
+      mainTabs[Number(localStorage.getItem("activeMainTabIndex"))].active = true
+    })
   }, []);
   const handleClick = (index: number, status: boolean) => {
     mainTabs?.map((tab) => {
@@ -36,7 +40,6 @@ const ProfileComponent = () => {
         mainTabs[index].active = status;
         setActiveMainTab(index);
         localStorage.setItem("activeMainTabIndex", String(index))
-        
       } else {
         mainTabs[index].active = !status;
       }

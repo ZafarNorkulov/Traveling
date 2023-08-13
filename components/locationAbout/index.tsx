@@ -35,7 +35,7 @@ const LocationAbout = () => {
               Traveling is a unique experience as it is the best way to unplug from the pushes and pulls of daily life. It helps us to forget about our problems, frustrations, and fears at home. During our journey, we experience life in different ways. We explore new places, cultures, cuisines, traditions, and ways of living.
             </p>
             </div>
-           <Link href="/flight-list"> <Button size="large" className="bg-white w-full text-sm font-medium lg:mt-0 mt-24">Book Flight</Button></Link>
+          <Button size="large" className="bg-white w-full text-sm font-medium lg:mt-0 mt-24">Book Flight</Button>
           </div>
           <div className="lg:col-span-7 col-span-12">
             <div className="grid grid-cols-12 md:gap-6 gap-3">
