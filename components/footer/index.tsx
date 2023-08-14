@@ -10,7 +10,7 @@ import {AiFillInstagram} from "react-icons/ai"
 const FooterComponent = () => {
     const {Footer} = Layout
   return (
-    <Footer className='footer bg-[#8DD3BB] px-0'>
+    <Footer className='footer bg-[#8DD3BB] px-0 mt-[263px]'>
       <div className="myContainer">
         <div className="footer-top-content mb-[64px] relative -mt-[12%] flex justify-between bg-[#CDEAE1] px-6 rounded-[20px] shadow-[0px 4px 16px 0px rgba(17, 34, 17, 0.05)]">
            <div className='py-6'>

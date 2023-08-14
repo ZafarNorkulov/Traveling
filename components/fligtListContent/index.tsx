@@ -4,10 +4,12 @@ import React, { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Emirates from "../../public/images/emirates.png";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import Link from "next/link";
 const FlightListContent = () => {
   const { Panel } = Collapse;
-  const [activeTab,setActiveTab] = useState<number>(0)
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [like, setLike] = useState(false);
   const [byPrice, setByPrice] = useState([
     {
       title: "Cheapest",
@@ -30,7 +32,9 @@ const FlightListContent = () => {
     {
       title: (
         <div className="sm:col-span-3 col-span-6 cursor-pointer flex flex-row items-center gap-2  font-medium ">
-          <span><FiMenu /></span>
+          <span>
+            <FiMenu />
+          </span>
           <span className="sm:text-base text-sm">Other Sort</span>
         </div>
       ),
@@ -38,9 +42,9 @@ const FlightListContent = () => {
       active: false,
     },
   ]);
-useEffect(()=>{
-  setActiveTab(Number(localStorage.getItem("byPriceIndex")) ?? 0)
-},[])
+  useEffect(() => {
+    setActiveTab(Number(localStorage.getItem("byPriceIndex")) ?? 0);
+  }, []);
   const handleClick = (index: number, status: boolean) => {
     const checkstatus_elements = [...byPrice];
     checkstatus_elements.forEach((item) => {
@@ -50,14 +54,14 @@ useEffect(()=>{
       } else {
         checkstatus_elements[index].active = !status;
       }
-      setActiveTab(index)
-      localStorage.setItem("byPriceIndex", String(index))
+      setActiveTab(index);
+      localStorage.setItem("byPriceIndex", String(index));
       setByPrice([...checkstatus_elements]);
     });
   };
 
   return (
-    <div className="myContainer mt-16 grid grid-cols-12 mb-[254px] lg:gap-4 gap-3">
+    <div className="myContainer mt-16 grid grid-cols-12 lg:gap-4 gap-3">
       <div className="filter lg:col-span-4 md:col-span-3 col-span-12 lg:gap-2 flex w-full md:bg-inherit bg-white p-6 rounded-xl md:shadow-none shadow">
         <div className="w-full">
           <h4 className="mb-8 text-xl">Filters</h4>
@@ -130,34 +134,61 @@ useEffect(()=>{
       </div>
       <div className="race-card lg:col-span-8 md:col-span-9 col-span-12">
         <div className="race-content relative w-full grid grid-cols-12 gap-x-6 lg:justify-between bg-white shadow-lg rounded-xl px-6 py-4 items-center gap-y-4">
-          <>{byPrice?.map((item, index) =>
-          item?.active ? (
-            <div className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer" key={index} onClick={()=>handleClick(index,false)}>
-              <div className="flex flex-col gap-y-2">
-              <h4 className="text-base font-semibold text-[#121] ">{item?.title}</h4>
-              <p className="text-sm opacity-40">{item?.desc}</p>
-              </div>
-              {index !== 3 && (
-
-              <Divider type="vertical" className="h-auto sm:block hidden"/>
-              )}
-           </div>
-          ):(
-            <div className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer" key={index} onClick={()=>handleClick(index,false)}>
-            <div className="flex flex-col gap-y-2">
-            <h4 className="text-base font-semibold text-[#121] ">{item?.title}</h4>
-            <p className="text-sm opacity-40">{item?.desc}</p>
-            </div>
-            {index !== 3 && (
-
-            <Divider type="vertical" className="h-auto sm:block hidden"/>
+          <>
+            {byPrice?.map((item, index) =>
+              item?.active ? (
+                <div
+                  className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer"
+                  key={index}
+                  onClick={() => handleClick(index, false)}
+                >
+                  <div className="flex flex-col gap-y-2">
+                    <h4 className="text-base font-semibold text-[#121] ">
+                      {item?.title}
+                    </h4>
+                    <p className="text-sm opacity-40">{item?.desc}</p>
+                  </div>
+                  {index !== 3 && (
+                    <Divider
+                      type="vertical"
+                      className="h-auto sm:block hidden"
+                    />
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="relative sm:col-span-3 col-span-12 flex flex-row justify-between cursor-pointer"
+                  key={index}
+                  onClick={() => handleClick(index, false)}
+                >
+                  <div className="flex flex-col gap-y-2">
+                    <h4 className="text-base font-semibold text-[#121] ">
+                      {item?.title}
+                    </h4>
+                    <p className="text-sm opacity-40">{item?.desc}</p>
+                  </div>
+                  {index !== 3 && (
+                    <Divider
+                      type="vertical"
+                      className="h-auto sm:block hidden"
+                    />
+                  )}
+                </div>
+              )
             )}
-         </div>
-          )
-            )}
-            
-            <span className={`hidden sm:block w-[19%] h-1 absolute bottom-0 duration-200 ease-linear bg-[#8dd3bb] ${activeTab ===0 ? "left-[2.7%]" : activeTab ===1 ?"left-[27%]":activeTab ===2? "left-[51.3%]" :"left-[75.7%]"} `}/>
-</>
+
+            <span
+              className={`hidden sm:block w-[19%] h-1 absolute bottom-0 duration-200 ease-linear bg-[#8dd3bb] ${
+                activeTab === 0
+                  ? "left-[2.7%]"
+                  : activeTab === 1
+                  ? "left-[27%]"
+                  : activeTab === 2
+                  ? "left-[51.3%]"
+                  : "left-[75.7%]"
+              } `}
+            />
+          </>
         </div>
         <div className="grid grid-cols-12 mt-6">
           <div className="xl:col-span-3 sm:col-span-4 col-span-12 flex items-center justify-center">
@@ -171,6 +202,7 @@ useEffect(()=>{
               <Select.Option key={"1"}>Recomended</Select.Option>
             </Select>
           </div>
+          
           <div className="col-span-12 race-card bg-white rounded-xl p-6 flex lg:flex-row flex-col gap-6 mt-6 relative">
             <div>
               <Image src={Emirates} className="card-img" alt="" />
@@ -246,12 +278,21 @@ useEffect(()=>{
               </div>
               <Divider className="my-4" />
               <div className="flex gap-4">
-                <div className="py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB]">
-                  <AiOutlineHeart className="text-xl mt-[2px]" />
+                <div
+                  className={`py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB] ${like && "bg-[#CDEAE1]"}`}
+                  onClick={() => setLike(!like)}
+                >
+                  {like ? (
+                    <AiFillHeart className="text-xl mt-[2px] fill-[#555] cursor-pointer" />
+                  ) : (
+                    <AiOutlineHeart className="text-xl mt-[2px]" />
+                  )}
                 </div>
-                <button className="w-full rounded-[4px] text-base font-semibold py-3 main-btn">
+                  <Link href={"/flight-detail"} className="w-full text-[#121] bg-[#8dd3bb] rounded-[4px]">
+                <button className="w-full rounded-[4px] text-base font-semibold py-3">
                   View Deals
                 </button>
+                  </Link>
               </div>
             </div>
           </div>
@@ -330,15 +371,25 @@ useEffect(()=>{
               </div>
               <Divider className="my-4" />
               <div className="flex gap-4">
-                <div className="py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB]">
-                  <AiOutlineHeart className="text-xl mt-[2px]" />
+                <div
+                  className={`py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB] ${like && "bg-[#CDEAE1]"}`}
+                  onClick={() => setLike(!like)}
+                >
+                  {like ? (
+                    <AiFillHeart className="text-xl mt-[2px] fill-[#555] cursor-pointer" />
+                  ) : (
+                    <AiOutlineHeart className="text-xl mt-[2px]" />
+                  )}
                 </div>
-                <button className="w-full rounded-[4px] text-base font-semibold py-3 main-btn">
+                  <Link href={"/flight-detail"} className="w-full text-[#121] bg-[#8dd3bb] rounded-[4px]">
+                <button className="w-full rounded-[4px] text-base font-semibold py-3">
                   View Deals
                 </button>
+                  </Link>
               </div>
             </div>
           </div>
+         
         </div>
       </div>
     </div>

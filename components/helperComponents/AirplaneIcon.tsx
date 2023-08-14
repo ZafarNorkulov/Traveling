@@ -1,11 +1,11 @@
 import React from 'react'
 
-const AirplaneIcon = ({fill}:{fill?:string}) => {
+const AirplaneIcon = ({fill,className,width,height}:{fill?:string,className?:string,width?:number,height?:number}) => {
   return (
-    <div>
+    <div className={`airplane-icon ${className}`}>
         <svg
-                width="24"
-                height="20"
+                width={width ? width : "24"}
+                height={height ? height : "20"}
                 viewBox="0 0 24 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

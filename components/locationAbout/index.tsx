@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 const LocationAbout = () => {
   return (
-    <div className="location-about mt-[80px] mb-[264px]">
+    <div className="location-about mt-[80px] ">
       <div className="myContainer ">
         <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center">
           <div className="sm:text-start sm:mx-0 text-center mx-auto">
