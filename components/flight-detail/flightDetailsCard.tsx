@@ -6,13 +6,16 @@ import { Divider } from "antd";
 import { IoFastFood, IoWifi } from "react-icons/io5";
 import { RiTimerFill } from "react-icons/ri";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
-const FlightDetailsCard = ({data}:{data:any}) => {
+import Link from "next/link";
+
+
+const FlightDetailsCard = ({data,href}:{data:any,href?:string}) => {
   return (
-    <div className="flight-detail-card myContainer mt-10">
+    <Link href={href ? `${href}`:""} className="flight-detail-card">
       {data?.map((item :any,index:number) =>(
 
       <ul className="py-8 px-6 rounded-xl self-stretch flex flex-col bg-white shadow-md" key={index}>
-        {/* backanddan keladigan ma'lumotga'ga qarab tekshirish kerak! */}
+        {/* !TODO: backend'dan keladigan ma'lumotga'ga qarab tekshirish kerak! */}
         {item?.airplane_name &&
         (
         <li className="flex justify-between mb-6">
@@ -58,28 +61,29 @@ const FlightDetailsCard = ({data}:{data:any}) => {
             </span>
           </div>
         </li>
-        <li className="flex mt-10 mx-auto">
-          <ul className="flex md:gap-x-[80px] gap-x-10">
-            <li className="flex gap-4 items-center">
+        <li className="flex mt-10 md:mx-auto">
+          <ul className="flex flex-row md:gap-x-[80px] sm:gap-10 gap-5">
+            <li className="flex md:flex-row flex-col md:gap-4 gap-2 items-center">
               <h3 className="lg:text-2xl text-lg font-semibold text-[#121]">{item?.start_time}</h3>
               <p className="lg:text-base text-[13px] text-[#121] opacity-60 font-medium">
                 {item?.start_city}
               </p>
             </li>
-            <li className="flex lg:gap-6 gap-3 items-center text-center flight-detail-card_bottom" >
+            <li className="flex lg:gap-6 gap-3 items-center " >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={39}
                 height="6"
                 viewBox="0 0 39 6"
                 fill="none"
+              
               >
                 <path
                   d="M5.66667 3C5.66667 1.52724 4.47276 0.333335 3 0.333335C1.52724 0.333335 0.333336 1.52724 0.333336 3C0.333336 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3ZM39 2.5L3 2.5L3 3.5L39 3.5L39 2.5Z"
                   fill="black"
                 />
               </svg>
-              <AirplaneIcon width={48 } height={ 48} />
+              <AirplaneIcon  width={48 } height={ 48} />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={39}
@@ -93,7 +97,7 @@ const FlightDetailsCard = ({data}:{data:any}) => {
                 />
               </svg>
             </li>
-            <li className="flex gap-4 items-center">
+            <li className="flex md:flex-row flex-col md:gap-4 gap-2 items-center ">
             <h3 className="lg:text-2xl text-lg font-semibold text-[#121]">{item?.reach_time}</h3>
               <p className="lg:text-base text-[13px] text-[#121] opacity-60 font-medium">
                 {item?.reach_city}
@@ -103,7 +107,7 @@ const FlightDetailsCard = ({data}:{data:any}) => {
         </li>
       </ul>
       ))}
-    </div>
+    </Link>
   );
 };
 

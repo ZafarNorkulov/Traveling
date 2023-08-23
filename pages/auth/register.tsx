@@ -6,7 +6,7 @@ const Register = () => {
   return (
     <div>
        <Head>
-        <title>Airways | Forgot password</title>
+        <title>Airways | Register</title>
         <meta name="description" content={"Airways Traveling sayt"} />
         </Head>
       <RegisterComponent/>

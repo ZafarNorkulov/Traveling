@@ -18,6 +18,7 @@ import photo from "../../public/images/avatar.jpeg";
 import { BiChevronDown, BiSolidUser } from "react-icons/bi";
 import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
+import { useAppSelector } from "../../redux/service";
 
 const CHeader = () => {
   const { Header } = Layout;
@@ -53,10 +54,8 @@ const CHeader = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const [login, setLogin] = useState("");
-  useEffect(() => {
-    setLogin(localStorage.getItem("accessToken") ?? "");
-  }, [login]);
+  const auth = useAppSelector((state) => state.auth);
+
   const content = (
     <div className="p-5 flex flex-col gap-y-5 w-[265px]">
       <div className="flex gap-x-4 items-center">
@@ -174,13 +173,13 @@ const CHeader = () => {
   );
 
   return (
-    <div className="header ">
+    <div className="header">
       <Layout className="shadow-md">
         <Header
           style={{
             background: colorBgContainer,
           }}
-          className="h-[87px]"
+          className="md:h-[87px] "
         >
           <div className="flex items-center justify-between translate-y-1/4">
             <div className="gap-x-8 relative md:flex hidden">
@@ -211,7 +210,7 @@ const CHeader = () => {
             </div>
             <GreenLogo />
             <div className="flex items-center gap-x-4">
-              {!login ? (
+              {auth.isAuthenticated ? (
                 <>
                   <Link href={"/favourites"}>
                     <button className="flex items-center gap-x-1 text-[#121]">

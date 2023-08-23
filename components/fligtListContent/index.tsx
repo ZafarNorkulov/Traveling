@@ -6,6 +6,7 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Emirates from "../../public/images/emirates.png";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Link from "next/link";
+import EvolutionCard from "../helperComponents/evolutionCard";
 const FlightListContent = () => {
   const { Panel } = Collapse;
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -93,23 +94,23 @@ const FlightListContent = () => {
                 <span>11:56PM</span>
               </div>
             </Panel>
-            <Panel header={<h5>Departure Time</h5>} key={"3"}>
+            <Panel header={<h5>Rating</h5>} key={"3"}>
               <div className="flex gap-4 ">
-                <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                <EvolutionCard>
                   0+
-                </span>
-                <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                </EvolutionCard>
+                <EvolutionCard>
                   1+
-                </span>
-                <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                </EvolutionCard>
+                <EvolutionCard>
                   2+
-                </span>
-                <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                </EvolutionCard>
+                <EvolutionCard>
                   3+
-                </span>
-                <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                </EvolutionCard>
+                <EvolutionCard>
                   4+
-                </span>
+                </EvolutionCard>
               </div>
             </Panel>
             <Panel header={<h5>Airlines</h5>} key={"4"}>
@@ -218,9 +219,9 @@ const FlightListContent = () => {
             <div className="w-full">
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2 md:h-auto h-[30%]">
-                  <span className="px-2 py-1 border-[1px] rounded border-[#8DD3BB]">
+                  <EvolutionCard>
                     4.2
-                  </span>
+                  </EvolutionCard>
                   <h4 className="text-xs font-bold">Very Good</h4>{" "}
                   <p className="text-xs font-medium">54 views</p>
                 </div>

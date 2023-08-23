@@ -1,3 +1,3 @@
-import { useSelector } from "react-redux";
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 
-export const useAppSelector:any = useSelector
+export const useAppSelector:TypedUseSelectorHook<any> = useSelector

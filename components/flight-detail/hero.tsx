@@ -10,6 +10,7 @@ import itemPhoto2 from "../../public/images/flight-detail-item(2).png";
 import itemPhoto3 from "../../public/images/flight-detail-item(3).png";
 import itemPhoto4 from "../../public/images/flight-detail-item(4).png";
 import itemPhoto5 from "../../public/images/flight-detail-item(5).png";
+import EvolutionCard from "../helperComponents/evolutionCard";
 
 
 const FlightDetailHero = () => {
@@ -33,9 +34,8 @@ const FlightDetailHero = () => {
             <span className="max-w-[365px] text-base opacity-75">Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437</span>
           </div>
           <div className="flex items-center gap-x-2">
-            <strong className="text-xs font-medium text-[#121] py-2 px-2 border border-[#8dd3bb] rounded-[4px]">
-              4.2
-            </strong>
+            <EvolutionCard>4.2</EvolutionCard>
+            
             <span className="flex text-xs  font-medium">
               <h6 className="text-bold">Very Good</h6>{""} 54 reviews
             </span>

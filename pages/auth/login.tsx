@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div>
          <Head>
-        <title>Airways | Forgot password</title>
+        <title>Airways | Login</title>
         <meta name="description" content={"Airways Traveling sayt"} />
         </Head>
       <LoginPage/>

@@ -34,7 +34,7 @@ const FlightDetail = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FlightDetailHero/>
-      <FlightDetailsCard data={data}/>
+      <FlightDetailsCard data={data} href="/booking-detail"/>
       <BookingDetail />
     </div>
   )
