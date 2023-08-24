@@ -6,6 +6,7 @@ import Link from "next/link";
 
 const PlaceOrderForHome = () => {
   const { RangePicker } = DatePicker;
+  
   return (
     <div className="myContainer fly">
       <div className="grid grid-cols-12  relative gap-x-4 gap-y-8 bg-white py-8 px-6 mx-auto z-10 rounded-2xl shadow-md my-[-5%]">

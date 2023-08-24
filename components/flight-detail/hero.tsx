@@ -15,7 +15,7 @@ import EvolutionCard from "../helperComponents/evolutionCard";
 
 const FlightDetailHero = () => {
   return (
-    <div className="myContainer  mt-12">
+    <div className="myContainer mt-12">
       <Breadcrumb
         className="text-[#121] opacity-75"
         items={[
@@ -36,9 +36,9 @@ const FlightDetailHero = () => {
           <div className="flex items-center gap-x-2">
             <EvolutionCard>4.2</EvolutionCard>
             
-            <span className="flex text-xs  font-medium">
-              <h6 className="text-bold">Very Good</h6>{""} 54 reviews
-            </span>
+            <p className="text-xs font-medium">
+              <span className="font-bold">Very Good</span> 54 reviews
+            </p>
           </div>
         </div>
         <div className="flex flex-col gap-y-4 text-end ">

@@ -1,0 +1,16 @@
+.ant-checkbox-wrapper{
+    .ant-checkbox-checked {
+        .ant-checkbox-inner {
+          background: #000!important;
+        }
+      }
+      .ant-checkbox{
+        user-select: none;
+        .ant-checkbox-inner{
+          border-color: #000!important;
+        }
+      }
+      span:nth-child(2){
+        user-select: none;
+      }
+}

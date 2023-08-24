@@ -3,10 +3,7 @@ import { GiSofa } from "react-icons/gi";
 import AirplaneIcon from "../helperComponents/AirplaneIcon";
 import {
   Layout,
-  Menu,
-  MenuProps,
   theme,
-  Button,
   Divider,
   Avatar,
   Popover,
