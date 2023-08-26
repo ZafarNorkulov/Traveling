@@ -48,7 +48,7 @@ const ProfileComponent = () => {
   };
 
   return (
-    <div className="myContainer mt-12 mb-[264px] relative">
+    <div className="relative">
       <div className="relative">
         <Image src={profileMainPhoto} alt="" />
         <button className="absolute md:right-6 md:bottom-6 right-3 bottom-3 flex items-center gap-2 main-btn md:py-3 md:px-4 py-2 px-2 rounded-[4px] ">

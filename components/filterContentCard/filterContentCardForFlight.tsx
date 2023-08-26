@@ -1,15 +1,22 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import EvolutionCard from '../helperComponents/evolutionCard'
 import { Checkbox, Divider } from 'antd'
 import { AiFillHeart } from 'react-icons/ai'
+import {AiOutlineHeart} from "react-icons/ai"
 import Link from 'next/link'
 
-const FilterContentCard = ({data,className}:{data?:any,className:string}) => {
-  console.log(data)
+const FilterContentCardForFlight = ({data,className}:{data?:any,className:string}) => {
+  const [flightData,setFlightData] = useState(data)
+  const toggleLike = (index:number) => {
+    const updatedFlightData = [...flightData];
+    updatedFlightData[index].isLiked = !updatedFlightData[index].isLiked;
+    setFlightData(updatedFlightData);
+  };
+  console.log(flightData)
   return (
   
-     data && data?.map((item:any,index:number)=>(
+     flightData && flightData?.map((item:any,index:number)=>(
         <div className={`bg-white rounded-xl p-6 flex lg:flex-row flex-col gap-6 mt-6 relative ${className}`} key={index}>
               <div>
                 <Image src={item?.photo} className="card-img" alt="" />
@@ -26,7 +33,7 @@ const FilterContentCard = ({data,className}:{data?:any,className:string}) => {
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-2 md:h-auto h-[30%]">
                     <EvolutionCard>
-                     {item?.star}
+                     {item?.evolution}
                     </EvolutionCard>
                     <h4 className="text-xs font-bold">Very Good</h4>{" "}
                     <p className="text-xs font-medium">{item?.viewer} views</p>
@@ -70,17 +77,27 @@ const FilterContentCard = ({data,className}:{data?:any,className:string}) => {
             
                 </div>
                 <Divider className="my-4" />
-                <div className="flex gap-4">
-                  {/* <div
-                    className={`py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB] ${like && "bg-[#CDEAE1]"}`}
-                    onClick={() => setLike(!like)}
+                <div className="flex gap-4 cursor-pointer">
+                {
+                  item?.isLiked ? (
+                    <div
+                    className={`py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB] `}
+                    onClick={() => toggleLike(index)}
                   >
-                    {like ? (
+                   
                       <AiFillHeart className="text-xl mt-[2px] fill-[#555] cursor-pointer" />
-                    ) : (
-                      <AiOutlineHeart className="text-xl mt-[2px]" />
-                    )}
-                  </div> */}
+                     
+                  </div>
+                  ):(
+                    <div
+                    className={`py-3 px-4 border-[1px] rounded-[4px] border-[#8DD3BB]  cursor-pointer`}
+                    onClick={() => toggleLike(index)}
+                  >
+
+                     <AiOutlineHeart className="text-xl mt-[2px]" />
+                  </div>
+                  )
+                }
                     <Link href={"/flight-detail"} className="w-full text-[#121] bg-[#8dd3bb] rounded-[4px]">
                   <button className="w-full rounded-[4px] text-base font-semibold py-3">
                     View Deals
@@ -94,4 +111,4 @@ const FilterContentCard = ({data,className}:{data?:any,className:string}) => {
   )
 }
 
-export default FilterContentCard
+export default FilterContentCardForFlight

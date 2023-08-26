@@ -8,7 +8,7 @@ import FlightInfo from './flightInfo'
 
 const TicketComponent = () => {
   return (
-    <div className='myContainer mt-12'>
+    <div>
          <Breadcrumb
         className="text-[#121] opacity-75"
         items={[

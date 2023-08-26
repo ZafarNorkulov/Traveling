@@ -13,6 +13,7 @@ const MainFilter = ({className}:{className?:string}) => {
           <Collapse
             ghost
             expandIconPosition={"end"}
+            defaultActiveKey={["1","2","3","4","5"]}
             className="w-full"
             expandIcon={({ isActive }) => (
               <MdOutlineKeyboardArrowUp
@@ -20,6 +21,7 @@ const MainFilter = ({className}:{className?:string}) => {
                   !isActive ? "rotate-180" : ""
                 }`}
                 style={{ fontSize: "25px" }}
+              
               />
             )}
           >
@@ -72,6 +74,7 @@ const MainFilter = ({className}:{className?:string}) => {
                 <Checkbox>My Dates Are Flexible</Checkbox>
               </div>
             </Panel>
+            <span className='text-sm font-bold text-[#ff8682] py-4 px-3 font-Montserrat'>+24 more</span>
           </Collapse>
         </div>
         <Divider type="vertical" className="md:flex hidden h-full m-0" />

@@ -34,7 +34,7 @@ const BookingDetailComponent = () => {
   ]);
   const auth = useAppSelector((state) => state.auth);
   return (
-    <div className="grid grid-cols-12 myContainer lg:gap-10 gap-5">
+    <div className="grid grid-cols-12 lg:gap-10 gap-5">
       <Breadcrumb
         className="text-[#121] opacity-75 col-span-12 mt-12 "
         items={[

@@ -4,8 +4,13 @@ import { Button, DatePicker, Select } from "antd";
 import { BsSendFill } from "react-icons/bs";
 import Link from "next/link";
 
-const PlaceOrderForHome = () => {
+const PlaceOrderForFlight = () => {
   const { RangePicker } = DatePicker;
+  const Swap = ()=>(
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 24" fill="none">
+  <path d="M14.583 2.25L19.833 7.5L14.583 12.75M19.03 7.5H4.83301M10.083 21.75L4.83301 16.5L10.083 11.25M5.67676 16.5H19.833" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  )
   
   return (
     <div className="myContainer fly">
@@ -15,7 +20,7 @@ const PlaceOrderForHome = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="From - To"
         >
-          <Select defaultValue={"la-ka"} bordered={false}>
+          <Select defaultValue={"la-ka"} bordered={false} suffixIcon={<Swap/>}>
             <Select.Option value="la-ka">Lahore - Karachi</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -31,13 +36,13 @@ const PlaceOrderForHome = () => {
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Depart- Return"
         >
-          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" bordered={false}/>
+          <RangePicker showTime={{ format: "HH:mm" }} format="MM-DD HH:mm" bordered={false} suffixIcon=""/>
         </FieldSetComponent>
         <FieldSetComponent
           className="lg:col-span-3 sm:col-span-6 col-span-12"
           title="Passenger - Class"
         >
-          <Select defaultValue={"economy"} bordered={false}>
+          <Select defaultValue={"economy"} bordered={false} suffixIcon="">
             <Select.Option value="economy">1 Passenger, Economy</Select.Option>
           </Select>
         </FieldSetComponent>
@@ -55,4 +60,4 @@ const PlaceOrderForHome = () => {
   );
 };
 
-export default PlaceOrderForHome;
+export default PlaceOrderForFlight;

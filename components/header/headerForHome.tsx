@@ -9,29 +9,28 @@ import {
   Popover,
 } from "antd";
 import Link from "next/link";
-import { GreenLogo } from "../logo";
 import Image from "next/image";
 import photo from "../../public/images/avatar.jpeg";
 import { BiChevronDown, BiSolidUser } from "react-icons/bi";
 import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
 import { useAppSelector } from "../../redux/service";
-import { useRouter } from "next/router";
+import { WhiteLogo } from "../logo";
 import SofaIcon from "../helperComponents/SofaIcon";
 
-const CHeader = () => {
+const HeaderForHome = () => {
   const { Header } = Layout;
   const [activeMenu,setActiveMenu] = useState<number>(0)
   const [menu, setMenu] = useState([
     {
       label: "Find Flight",
-      icon: <AirplaneIcon />,
+      icon: <AirplaneIcon fill="#fff" />,
       url: "/",
       active: true,
     },
     {
       label: "Find Stays",
-      icon: <SofaIcon fill={"#121"}/>,
+      icon: (<SofaIcon />),
       url: "/hotel",
       active: false,
     },
@@ -52,9 +51,6 @@ const CHeader = () => {
     setActiveMenu(index)
     localStorage.setItem("activeMenu", String(index));
   };
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   const auth = useAppSelector((state) => state.auth);
 
   const content = (
@@ -174,13 +170,11 @@ const CHeader = () => {
   );
 
   return (
-    <div className={`header`}>
-      <Layout className="shadow-md">
+    <div className={`header relative`}>
+      <Layout style={{backgroundColor: 'transparent'}} className="absolute top-0 left-0 right-0 z-50">
         <Header
-          style={{
-            background: colorBgContainer,
-          }}
-          className="md:h-[87px] "
+        style={{backgroundColor: "transparent"}}
+          className="md:h-[96px] "
         >
           <div className="flex items-center justify-between translate-y-1/4">
             <div className="gap-x-8 relative md:flex hidden">
@@ -188,30 +182,28 @@ const CHeader = () => {
                 item.active ? (
                   <Link
                   href={item?.url}
-                  className="flex items-center gap-1 cursor-pointer text-[#121]"
+                  className="flex items-center gap-1 cursor-pointer text-white"
                   key={index}
                   onClick={() => handleActiveMenu(index, false)}
                 >
                   {item?.icon}
-                  {item?.label}
+                  <span className="text-white">{item?.label}</span>
                 </Link>
                 ): (
                   <Link
                   href={item?.url}
-                  className="flex items-center gap-1 cursor-pointer text-[#121]"
+                  className="flex items-center gap-1 cursor-pointer "
                   key={index}
                   onClick={() => handleActiveMenu(index, true)}
                 >
                   {item?.icon}
-                  {item?.label}
+                  <span className="text-white">{item?.label}</span>
                 </Link>
                 )
               ))}
-              <hr
-                className={`absolute -bottom-2 w-[107px] duration-200 ease-linear h-1 m-0 bg-[#8dd3bb] ${activeMenu === 0 ? "left-0" : "left-[55%]"}`}
-              />
+            
             </div>
-            <GreenLogo />
+            <WhiteLogo />
             <div className="flex items-center gap-x-4">
               {auth.isAuthenticated ? (
                 <>
@@ -259,12 +251,16 @@ const CHeader = () => {
                 </>
               ) : (
                 <>
-                  <button className="login-btn py-[10px] px-6 rounded-lg leading-normal">
-                    <Link href={"/auth/login"}>Login</Link>
+                <Link href={"/auth/login"}>
+                  <button className=" py-[10px] text-white px-6 rounded-lg font-semibold  leading-normal">
+                    Login
                   </button>
-                  <button className="sign-btn py-[10px] px-6 rounded-lg leading-normal">
-                    <Link href={"/auth/register"}>Sign up</Link>
+                  </Link>
+                  <Link href={"/auth/register"}>
+                  <button className="bg-white text-[#121] py-[10px] px-6 rounded-lg font-semibold leading-normal">
+                    Sign in
                   </button>
+                  </Link>
                 </>
               )}
             </div>
@@ -275,4 +271,4 @@ const CHeader = () => {
   );
 };
 
-export default CHeader;
+export default HeaderForHome;
