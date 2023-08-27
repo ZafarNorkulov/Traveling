@@ -1,0 +1,31 @@
+.component{
+    &-title {
+        color: #000;
+        font-family: "Montserrat";
+        font-size: 2rem;
+        font-weight: 600;
+        @include md{
+            font-size: 1.85rem;
+        }
+        @include sm{
+            font-size: 1.7rem;
+        }
+      }
+      &-desc {
+        max-width: 851px;
+        color: #000;
+        font-family: "Montserrat";
+        font-size: 1rem;
+        font-weight: 400;
+        @include lg{
+          max-width: 700px;
+        }
+        @include md{
+          max-width: 500px;
+            font-size: 14px;
+        }
+        @include sm{
+            font-size: 12px;
+        }
+      }
+}

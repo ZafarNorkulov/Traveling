@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import heroImage from "../../public/images/mainPhoto-hero.png";
-import PlaceOrderForFlight from "../placeOrder/placeOrderForHome";
+import PlaceOrderForFlight from "../placeOrder/placeOrderForFlight";
 const FlightHero = () => {
 
   return (

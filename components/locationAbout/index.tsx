@@ -6,21 +6,12 @@ import about3 from "../../public/images/about3.png"
 import about4 from "../../public/images/about4.png"
 import Image from "next/image";
 import Link from "next/link";
+import ComponentsHead from "../helperComponents/componentsHead";
 const LocationAbout = () => {
   return (
     <div className="location-about mt-[80px] ">
       <div className="myContainer ">
-        <div className="flex sm:flex-row flex-col justify-between items-start sm:items-center">
-          <div className="sm:text-start sm:mx-0 text-center mx-auto">
-            <h2 className="component-title">Fall into travel</h2>
-            <p className="component-desc mt-4 mb-6">
-              Going somewhere to celebrate this season? Whether you are going
-              home or somewhere to roam, we have got the travel tools to get you
-              to your destination.
-            </p>
-          </div>
-          <Button  size={"large"} className="see-btn" >See All</Button>
-        </div>
+        <ComponentsHead title="Fall into travel" desc=" Going somewhere to celebrate this season? Whether you are going home or somewhere to roam, we have got the travel tools to get you to your destination." btnText="See All"/>
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-5 col-span-12 sm:mt-0 mt-3 flex flex-col justify-between p-6 bg-[#8DD3BB] rounded-[20px]">
             <div>

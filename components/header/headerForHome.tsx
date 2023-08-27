@@ -25,7 +25,7 @@ const HeaderForHome = () => {
     {
       label: "Find Flight",
       icon: <AirplaneIcon fill="#fff" />,
-      url: "/",
+      url: "/flight",
       active: true,
     },
     {
@@ -170,8 +170,8 @@ const HeaderForHome = () => {
   );
 
   return (
-    <div className={`header relative`}>
-      <Layout style={{backgroundColor: 'transparent'}} className="absolute top-0 left-0 right-0 z-50">
+    <div className={`header relative myContainer `}>
+      <Layout style={{backgroundColor: 'transparent'}} className="absolute top-0 left-8 right-8 z-50">
         <Header
         style={{backgroundColor: "transparent"}}
           className="md:h-[96px] "

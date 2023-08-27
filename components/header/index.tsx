@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GiSofa } from "react-icons/gi";
 import AirplaneIcon from "../helperComponents/AirplaneIcon";
-import {
-  Layout,
-  theme,
-  Divider,
-  Avatar,
-  Popover,
-} from "antd";
+import { Layout, theme, Divider, Avatar, Popover } from "antd";
 import Link from "next/link";
 import { GreenLogo } from "../logo";
 import Image from "next/image";
@@ -16,29 +10,28 @@ import { BiChevronDown, BiSolidUser } from "react-icons/bi";
 import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
 import { useAppSelector } from "../../redux/service";
-import { useRouter } from "next/router";
 import SofaIcon from "../helperComponents/SofaIcon";
 
 const CHeader = () => {
   const { Header } = Layout;
-  const [activeMenu,setActiveMenu] = useState<number>(0)
+  const [activeMenu, setActiveMenu] = useState<number>(0);
   const [menu, setMenu] = useState([
     {
       label: "Find Flight",
       icon: <AirplaneIcon />,
-      url: "/",
+      url: "/flight",
       active: true,
     },
     {
       label: "Find Stays",
-      icon: <SofaIcon fill={"#121"}/>,
+      icon: <SofaIcon fill={"#121"} />,
       url: "/hotel",
       active: false,
     },
   ]);
   useEffect(() => {
     setActiveMenu(Number(localStorage.getItem("activeMenu")) ?? 0);
-  },[])
+  }, []);
   const handleActiveMenu = (index: number, status: boolean) => {
     menu?.forEach((element) => {
       element.active = false;
@@ -49,7 +42,7 @@ const CHeader = () => {
       }
     });
     setMenu([...menu]);
-    setActiveMenu(index)
+    setActiveMenu(index);
     localStorage.setItem("activeMenu", String(index));
   };
   const {
@@ -184,31 +177,37 @@ const CHeader = () => {
         >
           <div className="flex items-center justify-between translate-y-1/4">
             <div className="gap-x-8 relative md:flex hidden">
-              {menu?.map((item, index) => (
+              {menu?.map((item, index) =>
                 item.active ? (
                   <Link
-                  href={item?.url}
-                  className="flex items-center gap-1 cursor-pointer text-[#121]"
-                  key={index}
-                  onClick={() => handleActiveMenu(index, false)}
-                >
+                    href={item?.url}
+                    className="flex items-center gap-1 cursor-pointer text-[#121]"
+                    key={index}
+                    onClick={() => handleActiveMenu(index, false)}
+                  >
+                  <div className="flex items-center gap-1">
                   {item?.icon}
-                  {item?.label}
-                </Link>
-                ): (
+                    {item?.label}
+                  </div>
+                  </Link>
+                ) : (
                   <Link
-                  href={item?.url}
-                  className="flex items-center gap-1 cursor-pointer text-[#121]"
-                  key={index}
-                  onClick={() => handleActiveMenu(index, true)}
-                >
+                    href={item?.url}
+                    className="flex items-center gap-1 cursor-pointer text-[#121]"
+                    key={index}
+                    onClick={() => handleActiveMenu(index, true)}
+                  >
+                    <div className="flex items-center gap-1">
                   {item?.icon}
-                  {item?.label}
-                </Link>
+                    {item?.label}
+                  </div>
+                  </Link>
                 )
-              ))}
+              )}
               <hr
-                className={`absolute -bottom-2 w-[107px] duration-200 ease-linear h-1 m-0 bg-[#8dd3bb] ${activeMenu === 0 ? "left-0" : "left-[55%]"}`}
+                className={`absolute -bottom-2 w-[107px] duration-200 ease-linear h-1 m-0 bg-[#8dd3bb] ${
+                  activeMenu === 0 ? "left-0" : "left-[55%]"
+                }`}
               />
             </div>
             <GreenLogo />
@@ -259,12 +258,16 @@ const CHeader = () => {
                 </>
               ) : (
                 <>
-                  <button className="login-btn py-[10px] px-6 rounded-lg leading-normal">
-                    <Link href={"/auth/login"}>Login</Link>
-                  </button>
-                  <button className="sign-btn py-[10px] px-6 rounded-lg leading-normal">
-                    <Link href={"/auth/register"}>Sign up</Link>
-                  </button>
+                  <Link href={"/auth/login"} className="text-[#121] hover:text-[#121]">
+                    <button className="login-btn py-[10px] text-[#121] hover:text-[#121] px-6 rounded-lg leading-normal">
+                      Login
+                    </button>
+                  </Link>
+                  <Link href={"/auth/register"} >
+                    <button className="sign-btn py-[10px]  px-6 rounded-lg leading-normal">
+                      Sign up
+                    </button>
+                  </Link>
                 </>
               )}
             </div>

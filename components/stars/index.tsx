@@ -1,6 +1,6 @@
 import React from "react";
 
-const Stars = ({ rating,fill  }: { rating: number,fill:string}) => {
+const Stars = ({ rating,fill  }: { rating?: number,fill?:string}) => {
   const ratingStar = Array.from({ length: 5 }, (v, index) => {
     return (
       <span key={index}>
