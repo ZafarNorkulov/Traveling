@@ -5,7 +5,7 @@ import useGetData from '../../custom-hooks/getData';
 import { IUser } from '../../types/user.type';
 
 const UserMe = () => {
-  const { data } = useGetData<IUser>({
+  const { data }:any = useGetData<IUser>({
     queryKey: ["user-data"],
     url: `/user`,
     options: { refetchOnWindowFocus: false, staleTime: Infinity },

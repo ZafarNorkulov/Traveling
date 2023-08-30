@@ -171,7 +171,7 @@ const HeaderForHome = () => {
     </div>
   );
 
-  const {data} = useGetData<IUser | undefined>({
+  const {data}:any = useGetData<IUser | undefined>({
     queryKey: ["user_data"],
     url:"/site/user"
   })

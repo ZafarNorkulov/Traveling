@@ -10,7 +10,7 @@ import { IUser } from '../../types/user.type';
 
 const HotelListContent = () => {
 
-  const {data} = useGetData<IUser>({
+  const {data}:any = useGetData<IUser>({
     queryKey: ["hotel-list"],
     url: "/hotel/list"
   })

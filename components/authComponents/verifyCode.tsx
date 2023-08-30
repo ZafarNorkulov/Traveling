@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 const VerifyCodeComponent = () => {
 
   const router = useRouter() 
-  const [user, setUser] = useState<{code:string | null,email:string | null}>({
+  const [user, setUser] = useState<{code:string,email:string | null}>({
     code: "",
     email: "",
   });

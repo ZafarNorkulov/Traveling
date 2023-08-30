@@ -32,7 +32,7 @@ const CHeader = () => {
     },
   ]);
 
-  const {data} = useGetData<IUser>({
+  const {data}:any = useGetData<IUser>({
     queryKey: ["user-data"],
     url: "/user/list"
   })

@@ -49,7 +49,7 @@ const ProfileComponent = () => {
     });
     setMainTabs([...mainTabs]);
   };
-  const { data } = useGetData<IUser[]>({
+  const { data }:any = useGetData<IUser[]>({
     queryKey: ["user-data"],
     url: `/user`,
     options: { refetchOnWindowFocus: false, staleTime: Infinity },
