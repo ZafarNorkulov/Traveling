@@ -58,7 +58,7 @@ const TravelList = () => {
   ]);
 
   return (
-    <div className="myContainer mt-[120px]">
+    <div className="myContainer ">
       <ComponentsHead
         title="Plan your perfect trip"
         desc="Search Flights & Places Hire to our most popular destinations"

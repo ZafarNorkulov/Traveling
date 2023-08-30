@@ -17,6 +17,8 @@ import { MdSupport } from "react-icons/md";
 import { useAppSelector } from "../../redux/service";
 import { WhiteLogo } from "../logo";
 import SofaIcon from "../helperComponents/SofaIcon";
+import useGetData from "../../custom-hooks/getData";
+import { IUser } from "../../types/user.type";
 
 const HeaderForHome = () => {
   const { Header } = Layout;
@@ -51,7 +53,7 @@ const HeaderForHome = () => {
     setActiveMenu(index)
     localStorage.setItem("activeMenu", String(index));
   };
-  const auth = useAppSelector((state) => state.auth);
+  const auth = useAppSelector((state) => state.auth.auth);
 
   const content = (
     <div className="p-5 flex flex-col gap-y-5 w-[265px]">
@@ -169,6 +171,11 @@ const HeaderForHome = () => {
     </div>
   );
 
+  const {data} = useGetData<IUser | undefined>({
+    queryKey: ["user_data"],
+    url:"/site/user"
+  })
+
   return (
     <div className={`header relative myContainer `}>
       <Layout style={{backgroundColor: 'transparent'}} className="absolute top-0 left-8 right-8 z-50">
@@ -205,10 +212,10 @@ const HeaderForHome = () => {
             </div>
             <WhiteLogo />
             <div className="flex items-center gap-x-4">
-              {auth.isAuthenticated ? (
+              {auth?.access_token ? (
                 <>
                   <Link href={"/favourites"}>
-                    <button className="flex items-center gap-x-1 text-[#121]">
+                    <button className="flex items-center gap-x-1 text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -218,7 +225,7 @@ const HeaderForHome = () => {
                       >
                         <path
                           d="M12.0005 21.5C11.6994 21.4996 11.4054 21.4086 11.1568 21.2389C7.47286 18.7381 5.87771 17.0234 4.99786 15.9514C3.12286 13.6663 2.22521 11.3202 2.25052 8.77953C2.28005 5.86813 4.61583 3.5 7.4574 3.5C9.52365 3.5 10.9547 4.66391 11.7882 5.63328C11.8146 5.66368 11.8472 5.68805 11.8838 5.70476C11.9205 5.72146 11.9603 5.73011 12.0005 5.73011C12.0408 5.73011 12.0806 5.72146 12.1172 5.70476C12.1538 5.68805 12.1865 5.66368 12.2129 5.63328C13.0463 4.66297 14.4774 3.5 16.5436 3.5C19.3852 3.5 21.721 5.86812 21.7505 8.78C21.7758 11.3211 20.8772 13.6672 19.0032 15.9519C18.1233 17.0239 16.5282 18.7386 12.8443 21.2394C12.5955 21.4089 12.3016 21.4998 12.0005 21.5Z"
-                          fill="#112211"
+                          fill="#fff"
                         />
                       </svg>
                       Favourites
@@ -226,7 +233,7 @@ const HeaderForHome = () => {
                   </Link>
                   <Divider
                     type="vertical"
-                    className=" bg-[#121] font-semibold w-[1.5px]"
+                    className=" bg-white font-semibold w-[1.5px]"
                   />
                   <Popover
                     content={content}
@@ -245,7 +252,7 @@ const HeaderForHome = () => {
                           <BiChevronDown size={14} />
                         </div>
                       </div>
-                      John D.
+                     {data?.first_name}
                     </div>
                   </Popover>
                 </>

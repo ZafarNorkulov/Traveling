@@ -6,11 +6,7 @@ import TravelPrice from "../../components/travelPrice";
 import LocationAbout from "../../components/locationAbout";
 import userLayout from "../../layouts/userLayout";
 export default function Home() {
-  useEffect(() => {
-    return () => {
-      console.log(1);
-    };
-  }, []);
+ 
   return (
     <div>
       <Head>

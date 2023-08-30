@@ -5,6 +5,14 @@
   @include md {
     padding: 24px;
   }
+  .auth-image{
+    object-fit: cover;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
   h3{
     font-family: "TradeGothic LT Extended";
   }
@@ -78,5 +86,11 @@
         gap: 5px;
     }
   }
+  .slick-slide{
+    div{
+      height: 88vh;
+    }
+  }
+
 }
 

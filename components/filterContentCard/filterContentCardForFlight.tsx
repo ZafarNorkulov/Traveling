@@ -13,7 +13,6 @@ const FilterContentCardForFlight = ({data,className}:{data?:any,className:string
     updatedFlightData[index].isLiked = !updatedFlightData[index].isLiked;
     setFlightData(updatedFlightData);
   };
-  console.log(flightData)
   return (
   
      flightData && flightData?.map((item:any,index:number)=>(
@@ -98,7 +97,7 @@ const FilterContentCardForFlight = ({data,className}:{data?:any,className:string
                   </div>
                   )
                 }
-                    <Link href={"/flight-detail"} className="w-full text-[#121] bg-[#8dd3bb] rounded-[4px]">
+                    <Link href={"/flight/flight-detail"} className="w-full text-[#121] bg-[#8dd3bb] rounded-[4px]">
                   <button className="w-full rounded-[4px] text-base font-semibold py-3">
                     View Deals
                   </button>

@@ -34,16 +34,16 @@ const FilterContentCardForHotel = ({
         key={index}
       >
         <div>
-          <Image
-            src={item?.photo}
+          {/* <Image
+            src={item?.image}
             className="card-img lg:rounded-none rounded-xl h-[75%]"
             alt=""
-          />
+          /> */}
         </div>
         <div className="absolute top-6 right-6 lg:flex flex-col  hidden">
           <span className=" text-xs font-medium opacity-75">starting from</span>
           <h2 className="flex items-baseline text-2xl font-bold text-[#FF8682] text-end">
-            ${item?.price}{" "}
+            ${item?.starting_from}{" "}
             {item?.morning ? (
               ""
             ) : (
@@ -57,13 +57,13 @@ const FilterContentCardForHotel = ({
           </h2>
           <div className="flex items-center gap-1">
             <IoLocation />
-            <span className="text-xs">{item?.location}</span>
+            <span className="text-xs">{item?.address}</span>
           </div>
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-1">
               {" "}
-              <Stars rating={item?.star} fill="#FF8682" />
-              <p className="text-xs">{item?.star} Star Hotel</p>
+              <Stars rating={item?.sum_rating} fill="#FF8682" />
+              <p className="text-xs">{Number(item?.sum_rating.toString().slice(0,3)) } Star Hotel</p>
             </div>
             <div className="flex items-center gap-1">
               <RiCupFill />
@@ -74,7 +74,7 @@ const FilterContentCardForHotel = ({
           </div>
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-2 md:h-auto h-[30%]">
-              <EvolutionCard>{item?.evolution}</EvolutionCard>
+              <EvolutionCard>{Number(item?.sum_rating.toString().slice(0,3))}</EvolutionCard>
               <h4 className="text-xs font-bold">Very Good</h4>{" "}
               <p className="text-xs font-medium">{item?.viewer} views</p>
             </div>

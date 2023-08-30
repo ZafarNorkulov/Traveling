@@ -10,8 +10,10 @@ import Google from "../../public/images/google.png";
 import FaceBook from "../../public/images/facebook.png";
 import Apple from "../../public/images/apple.png";
 import { GreenLogo } from "../logo";
+import { useRouter } from "next/router";
 
 const RegisterComponent = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -19,26 +21,25 @@ const RegisterComponent = () => {
     phone: "",
     password: "",
     confirm_password: "",
-    is_active: true,
-    is_superuser: false,
   });
-  const onFinish = async (data: any) => {
-    console.log(data);
+  const onFinish = async () => {
     try {
       await instance({
-        url: "/user",
+        url: "/site/register",
         method: "POST",
-        data: data,
+        data: user,
       });
+      // message.success("You are logged")
+        router.push("/profile")
     } catch (error: any) {
-      message.error(error?.response?.data?.detail || "Error");
+      message.error(error?.response?.data?.detail[0].msg || "Error");
     }
   };
 
   return (
-    <div className="authContainer">
+    <div className="authContainer ">
       <div className="grid grid-cols-12 gap-[104px]">
-        <div className="lg:col-span-5 lg:block hidden">
+        <div className="lg:col-span-5 lg:block hidden ">
           <Carousel autoplay>
             <Image
               className="auth-image"
@@ -50,7 +51,9 @@ const RegisterComponent = () => {
         </div>
         <div className="lg:col-span-7 col-span-12">
           <GreenLogo />
-          <h3>Sign Up</h3>
+          <h3 className="mt-[64px] text-[40px] font-bold text-black mb-4">
+            Sign Up
+          </h3>
           <span className="auth-desc">
             Let’s get you all st up so you can access your personal account.
           </span>
@@ -61,43 +64,56 @@ const RegisterComponent = () => {
             size="large"
           >
             <div className="flex flex-col md:flex-row gap-3 mb-2">
-              <FieldSetComponent
-                className="w-full  "
-                title={"First Name"}
-              >
-                <Input className="w-full" name="first_name" />
+              <FieldSetComponent className="w-full  " title={"First Name"}>
+                <Input
+                  bordered={false}
+                  className="w-full"
+                  value={user.first_name}
+                  onChange={(e) =>
+                    setUser({ ...user, first_name: e.target.value })
+                  }
+                  name="first_name"
+                />
               </FieldSetComponent>
-              <FieldSetComponent
-                className="w-full "
-                title="Last Name"
-              >
-                <Input className="w-full" name="last_name" />
+              <FieldSetComponent className="w-full " title="Last Name">
+                <Input
+                  bordered={false}
+                  className="w-full"
+                  value={user.last_name}
+                  onChange={(e) =>
+                    setUser({ ...user, last_name: e.target.value })
+                  }
+                  name="last_name"
+                />
               </FieldSetComponent>
             </div>
             <div className="flex flex-col md:flex-row gap-3 mb-2">
-              <FieldSetComponent
-                title="Email"
-                className="w-full"
-              >
+              <FieldSetComponent title="Email" className="w-full">
                 <Input
+                  bordered={false}
                   className="w-full"
                   type="email"
                   placeholder="example@gmail.com"
                   name="email"
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
                 />
               </FieldSetComponent>
-              <FieldSetComponent
-                title="Phone Number"
-                className="w-full"
-              >
-                <Input className="w-full" name="phone" />
+              <FieldSetComponent title="Phone Number" className="w-full">
+                <Input
+                  bordered={false}
+                  className="w-full"
+                  value={user.phone}
+                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                  name="phone"
+                />
               </FieldSetComponent>
             </div>
-            <FieldSetComponent
-              title={"Password"}
-              className="w-full   mb-2"
-            >
+            <FieldSetComponent title={"Password"} className="w-full   mb-2">
               <Input.Password
+                bordered={false}
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
                 name="password"
                 placeholder="input password"
                 iconRender={(visible) =>
@@ -111,6 +127,11 @@ const RegisterComponent = () => {
               className="w-full   mb-2"
             >
               <Input.Password
+                bordered={false}
+                value={user.confirm_password}
+                onChange={(e) =>
+                  setUser({ ...user, confirm_password: e.target.value })
+                }
                 name="confirm_password"
                 placeholder="input password"
               />
@@ -140,15 +161,33 @@ const RegisterComponent = () => {
               <span className="px-3 or-elements">Or Sign up with</span>
               <hr className="w-full" />
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-[40px]">
               <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
-                <Image src={FaceBook} width={24} height={24} alt="" />
+                <Image
+                  src={FaceBook}
+                  className="mx-auto"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
               </span>
               <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
-                <Image src={Google} width={24} height={24} alt="" />
+                <Image
+                  src={Google}
+                  className="mx-auto"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
               </span>
               <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
-                <Image src={Apple} width={24} height={24} alt="" />
+                <Image
+                  src={Apple}
+                  className="mx-auto"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
               </span>
             </div>
           </div>

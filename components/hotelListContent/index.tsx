@@ -5,11 +5,16 @@ import FilterContentCardForHotel from '../filterContentCard/filterContentCardFor
 import SortByNameForHotelList from '../sortByName/sortByNameForHotelList';
 import HotelPhotofirst from "../../public/images/HotelPhotofirst.png"
 import HotelPhotosecond from "../../public/images/HotelPhotosecond.png"
-import HotelPhotothird from "../../public/images/HotelPhotothird.png"
-import HotelPhotofourth from "../../public/images/HotelPhotofourth.png"
+import useGetData from '../../custom-hooks/getData';
+import { IUser } from '../../types/user.type';
 
 const HotelListContent = () => {
 
+  const {data} = useGetData<IUser>({
+    queryKey: ["hotel-list"],
+    url: "/hotel/list"
+  })
+  console.log(data)
   const [contentData,setContentData]= useState([
     {
       name: "CVK Park Bosphorus Hotel Istanbul",
@@ -72,7 +77,7 @@ const HotelListContent = () => {
             </Select>
           </div>
 
-          <FilterContentCardForHotel data={contentData} className="col-span-12 race-card" />
+          <FilterContentCardForHotel data={data} className="col-span-12 race-card" />
           <button className='col-span-12 mt-8 text-white text-sm font-semibold bg-[#121] h-12 py-2 px-4  rounded-[4px]'>Show more results</button>
         </div>
       </div>

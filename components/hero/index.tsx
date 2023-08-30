@@ -4,7 +4,7 @@ import heroImage from "../../public/images/landingHero.png";
 import PlaceOrderForHome from "../placeOrder/placeOrderForHome";
 const Hero = () => {
   return (
-    <div className="hero myContainer mt-5">
+    <div className="hero myContainer mt-5 h-[100vh]">
       <div className="hero-wrap">
         <Image src={heroImage} className="w-full max-h-[600px] md:min-h-max min-h-[300px] object-cover object-center rounded-3xl" alt="" />
         <div className="myContainer flex justify-center items-center">

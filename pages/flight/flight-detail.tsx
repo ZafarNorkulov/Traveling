@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import userLayout from '../../layouts/userLayout'
 import FlightDetailHero from '../../components/flight-detail/hero'
 import FlightDetailsCard from '../../components/flight-detail/flightDetailsCard'
-import BookingDetail from '../../components/flight-detail/bookingDetail'
 import emirates from "../../public/images/emirates.png"
 const FlightDetail = () => {
   const [data,setData] = useState([
@@ -34,8 +33,7 @@ const FlightDetail = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FlightDetailHero/>
-      <FlightDetailsCard data={data} href="/booking-detail"/>
-      <BookingDetail />
+      <FlightDetailsCard data={data} href="/flight/booking-detail"/>
     </div>
   )
 }

@@ -1,41 +1,68 @@
-import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
+import {  Carousel, Form, Input, message } from "antd";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imageAuth from "../../public/images/Group 4.png";
 import Image from "next/image";
 import instance from "../../configs/axios";
-import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../redux/reducers/authReducer";
 import FieldSetComponent from "../filedSet";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { GreenLogo } from "../logo";
+import { EyeFilled } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 const VerifyCodeComponent = () => {
-  const [user, setUser] = useState({
-    code: ""
+
+  const router = useRouter() 
+  const [user, setUser] = useState<{code:string | null,email:string | null}>({
+    code: "",
+    email: "",
   });
-  const dispatch = useDispatch();
+  const [localStorageEmail, setLocalStorageEmail] = useState<string | null>(null);
+  //TODO localstorage get user email and give state
+  useEffect(() => {
+    const emailFromLocalStorage = localStorage.getItem("user_email");
+    setLocalStorageEmail(emailFromLocalStorage);
+  },[user])
+
+  //TODO Update the user state with the email from localStorage
+  useEffect(() => {
+    setUser((prevUser) => ({ ...prevUser, email: localStorageEmail }));
+  }, [localStorageEmail]); 
+  //TODO verify code give
   const onFinish = async () => {
     try {
-      let res = await instance({
-        url: "/login",
+      await instance({
+        url: "/site/check-code",
         method: "POST",
         data: user,
       });
-      message.success(res?.data?.msg || "Logged");
-      localStorage.setItem("accessToken", res.data.access_token);
-      dispatch(setUserInfo(res.data));
-      // router.push("/profile")
+      router.push("/auth/new-password")
     } catch (error: any) {
-      message.error(error?.response?.data?.msg || "UnLogged");
-      // router.push("/auth/login")
+      message.error(error?.response?.data?.detail[0].msg || "UnLogged");
     }
   };
+  //TODO request to forgot password
+const handleResend = async()=>{
+  try {
+    let res = await instance({
+      url: "/site/forgot-password",
+      method: "POST",
+      data: user,
+    });
+    message.success(res?.data?.msg || "Send code");
 
+    setTimeout(()=>{
+      // router.push("/auth/verify-code")
+    },1000)
+  } catch (error: any) {
+    message.error(error?.response?.data?.msg || "");
+    // router.push("/auth/login")
+  }
+}
   return (
     <div className="authContainer">
-      <div className="row gx-5">
-        <div className="col-lg-5 login-right">
+      <div className="grid grid-cols-12 gap-x-[104px]">
+        <div className="lg:col-span-5 col-span-12 login-right">
           <GreenLogo/>
           <div className="backLogin-elements">
             <Link href={"/auth/login"}>
@@ -43,35 +70,36 @@ const VerifyCodeComponent = () => {
               Back to Login
             </Link>
           </div>
-          <h3>Verify code</h3>
-          <span className="auth-desc">
+          <h3 className="mt-[64px] text-[40px] font-bold text-black mb-4">Verify Code</h3>
+          <span className="auth-desc opacity-75 mt-4">
             An authentication code has been sent to your email.
           </span>
-          <Form onFinish={onFinish} layout="vertical" className="mt-5 ">
+          <Form onFinish={onFinish} className="mt-12 flex flex-col">
             <FieldSetComponent title="Enter Code" className="mb-2">
               <Input
+              bordered={false}
+              suffix={<EyeFilled size={24}  />}
                 value={user?.code}
                 placeholder="Write code"
                 onChange={(e) => setUser({ ...user, code: e.target.value })}
               />
             </FieldSetComponent>
-            <div className="d-flex flex-sm-row flex-column align-items-baseline justify-content-between"></div>
-            <span className="already-text ">
+            <span className="already-text mt-4">
               Didn’t receive a code?{" "}
-              <Link href="" className="myred-color">
+              <span  className="myred-color cursor-pointer" onClick={handleResend}>
                 {" "}
                 Resend
-              </Link>
+              </span>
             </span>
             <button
-              className="w-100 px-3 py-3 rounded auth-btn mygreen-bgColor"
+              className="w-full px-3 py-3 rounded auth-btn mygreen-bgColor mt-8"
               type="submit"
             >
               Verify
             </button>
           </Form>
         </div>
-        <div className="col-7 d-lg-block d-none">
+        <div className="col-span-7 lg:block hidden">
           <Carousel autoplay>
             <Image className="auth-image" src={imageAuth} alt="" />
             <Image className="auth-image" src={imageAuth} alt="" />

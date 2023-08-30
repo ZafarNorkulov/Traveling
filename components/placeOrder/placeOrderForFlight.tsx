@@ -49,7 +49,7 @@ const PlaceOrderForFlight = () => {
         <div className="lg:col-span-8 sm:col-span-5 sm:block hidden"></div>
         <div className="lg:col-span-4 sm:col-span-7 col-span-12 text-end flex items-center justify-end gap-3">
           <span>+ Add Promo Code</span>
-            <Link href={"/flight-list"}>
+            <Link href={"/flight/flight-list"}>
           <Button size="large" className="flex items-center gap-1">
             <BsSendFill /> Show Filghts
           </Button>

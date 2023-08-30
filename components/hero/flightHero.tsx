@@ -5,7 +5,7 @@ import PlaceOrderForFlight from "../placeOrder/placeOrderForFlight";
 const FlightHero = () => {
 
   return (
-    <div className="hero">
+    <div className="hero h-[90vh]">
       <div className="hero-wrap">
         <Image src={heroImage} className="hero-img" alt="" />
         <div className="myContainer">

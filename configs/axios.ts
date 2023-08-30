@@ -6,6 +6,7 @@ const onRequest = (config: any) => {
   config.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
   const access_token = localStorage.getItem("accessToken") ?? "";
   config.headers.Authorization = `Bearer ${access_token}`;
+  config.headers!["Cache-Control"] = "public";
   return config;
 };
 

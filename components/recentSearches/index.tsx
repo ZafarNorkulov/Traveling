@@ -6,7 +6,7 @@ import thirdRecentPhoto from "../../public/images/thirdsearch.png"
 import fourthRecentPhoto from "../../public/images/fourthsearch.png"
 const RecentSearches = () => {
   return (
-    <div className='myContainer grid grid-cols-12 mt-[120px] gap-8'>
+    <div className='myContainer grid grid-cols-12 gap-8'>
       <h4 className='col-span-12 component-title'>Your recent searches</h4>
       <div className="col-span-3 flex items-center gap-4">
         <Image src={firstRecentPhoto} alt="" />

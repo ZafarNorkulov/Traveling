@@ -12,10 +12,12 @@ import { useDispatch } from "react-redux";
 import { setUserInfo } from "../../redux/reducers/authReducer";
 import { GreenLogo } from "../logo";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const FieldSetComponent = dynamic(() => import("../filedSet"), { ssr: false });
 
 const LoginPage = () => {
+  const router = useRouter()
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,15 +33,14 @@ const LoginPage = () => {
       message.success(res?.data?.msg || "Logged");
       localStorage.setItem("accessToken", res.data.access_token);
       dispatch(setUserInfo(res.data));
-      // router.push("/profile")
+      router.push("/profile")
     } catch (error: any) {
-      message.error(error?.response?.data?.msg || "UnLogged");
-      // router.push("/auth/login")
+      message.error(error?.response?.data?.detail || "UnLogged");
     }
   };
 
   return (
-    <div className="authContainer h-[100vh] overflow-hidden">
+    <div className="authContainer h-[100vh]">
       <div className="grid grid-cols-12 xl:gap-x-[104px] md:gap-x-[80px]">
         <div className="lg:col-span-5 col-span-12 h-[100vh]">
           <GreenLogo />
@@ -48,6 +49,7 @@ const LoginPage = () => {
           <Form onFinish={onFinish} layout="vertical" className="w-full mt-[48px] ">
             <FieldSetComponent title="Email" className="w-full ">
               <Input
+              bordered={false}
               className="w-full"
                 value={user?.email}
                 placeholder="example@gmail.com"
@@ -56,6 +58,7 @@ const LoginPage = () => {
             </FieldSetComponent>
             <FieldSetComponent title="Password" className="w-full  mt-3">
               <Input.Password
+              bordered={false}
                className="w-full"
                 value={user?.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -67,11 +70,13 @@ const LoginPage = () => {
                 valuePropName="checked"
                 className="mt-2"
               >
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox >Remember me</Checkbox>
               </Form.Item>
+              <Link href={"/auth/forgot-password"}>
                 <div className="forgot-btn">
-                  <Link href={"/auth/forgot-password"}>Forgot Password?</Link>
+                  Forgot Password?
                 </div>
+                </Link>
             </div>
             <button
               className="w-full px-3 py-3 rounded auth-btn mt-[40px]"
@@ -116,10 +121,10 @@ const LoginPage = () => {
           </div>
         </div>
         <div className="col-span-7 lg:block hidden ">
-          <Carousel autoplay dots={true}>
-            <Image className="w-full rounded-[30px] " src={imageAuth} alt="" />
-            <Image className="w-full rounded-[30px] " src={Airplane} alt="" />
-            <Image className="w-full rounded-[30px] " src={imageAuth} alt="" />
+          <Carousel autoplay dots={true} className="h-[88vh] ">
+            <Image className="auth-image" src={imageAuth} alt="" />
+            <Image className="auth-image" src={Airplane} alt="" />
+            <Image className="auth-image" src={imageAuth} alt="" />
           </Carousel>
         </div>
       </div>

@@ -4,7 +4,7 @@ import PlaceOrderForGuest from '../placeOrder/placeOrderForGuest'
 import heroImage from "../../public/images/hotel-hero.png"
 const HotelHero = () => {
   return (
-    <div className='hero'>
+    <div className='hero md:h-[90vh]'>
       <div className="hero-wrap">
         <Image src={heroImage} className="hero-img" alt="" />
         <div className="myContainer">

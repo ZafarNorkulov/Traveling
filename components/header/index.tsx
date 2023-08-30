@@ -11,6 +11,8 @@ import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
 import { useAppSelector } from "../../redux/service";
 import SofaIcon from "../helperComponents/SofaIcon";
+import useGetData from "../../custom-hooks/getData";
+import { IUser } from "../../types/user.type";
 
 const CHeader = () => {
   const { Header } = Layout;
@@ -29,6 +31,11 @@ const CHeader = () => {
       active: false,
     },
   ]);
+
+  const {data} = useGetData<IUser>({
+    queryKey: ["user-data"],
+    url: "/user/list"
+  })
   useEffect(() => {
     setActiveMenu(Number(localStorage.getItem("activeMenu")) ?? 0);
   }, []);
@@ -48,8 +55,8 @@ const CHeader = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const auth = useAppSelector((state) => state.auth);
-
+  const auth = useAppSelector((state) => state.auth.auth);
+console.log(auth)
   const content = (
     <div className="p-5 flex flex-col gap-y-5 w-[265px]">
       <div className="flex gap-x-4 items-center">
@@ -165,7 +172,7 @@ const CHeader = () => {
       </div>
     </div>
   );
-
+// console.log(auth)
   return (
     <div className={`header`}>
       <Layout className="shadow-md">
@@ -175,7 +182,7 @@ const CHeader = () => {
           }}
           className="md:h-[87px] "
         >
-          <div className="flex items-center justify-between translate-y-1/4">
+          <div className="flex items-center justify-between md:translate-y-1/4">
             <div className="gap-x-8 relative md:flex hidden">
               {menu?.map((item, index) =>
                 item.active ? (
@@ -212,7 +219,7 @@ const CHeader = () => {
             </div>
             <GreenLogo />
             <div className="flex items-center gap-x-4">
-              {auth.isAuthenticated ? (
+              {auth?.access_token ? (
                 <>
                   <Link href={"/favourites"}>
                     <button className="flex items-center gap-x-1 text-[#121]">
@@ -252,7 +259,7 @@ const CHeader = () => {
                           <BiChevronDown size={14} />
                         </div>
                       </div>
-                      John D.
+                      {data?.first_name}
                     </div>
                   </Popover>
                 </>

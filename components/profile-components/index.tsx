@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import profileMainPhoto from "../../public/images/Rectangle 3.png";
 import { BsCloudUploadFill } from "react-icons/bs";
 import avatarPhoto from "../../public/images/avatar.jpeg";
-import { Divider } from "antd";
+import { Divider, message } from "antd";
 import UserMe from "./user-me";
 import TicketBookings from "./ticketBookings";
 import PaymentMethods from "./paymentMethods";
 import { useRouter } from "next/router";
+import useGetData from "../../custom-hooks/getData";
+import { IUser } from "../../types/user.type";
 
 const ProfileComponent = () => {
   const [activeMainTab, setActiveMainTab] = useState<number>(0);
@@ -30,22 +32,29 @@ const ProfileComponent = () => {
     setActiveMainTab(Number(localStorage.getItem("activeMainTabIndex")) ?? 0);
     mainTabs?.map((tab) => {
       tab.active = false;
-      mainTabs[Number(localStorage.getItem("activeMainTabIndex"))].active = true
-    })
-  }, []);
+      mainTabs[Number(localStorage.getItem("activeMainTabIndex"))].active =
+        true;
+    });
+  }, [mainTabs]);
   const handleClick = (index: number, status: boolean) => {
     mainTabs?.map((tab) => {
       tab.active = false;
       if (status === true) {
         mainTabs[index].active = status;
         setActiveMainTab(index);
-        localStorage.setItem("activeMainTabIndex", String(index))
+        localStorage.setItem("activeMainTabIndex", String(index));
       } else {
         mainTabs[index].active = !status;
       }
     });
     setMainTabs([...mainTabs]);
   };
+  const { data } = useGetData<IUser[]>({
+    queryKey: ["user-data"],
+    url: `/user`,
+    options: { refetchOnWindowFocus: false, staleTime: Infinity },
+  });
+  console.log(data);
 
   return (
     <div className="relative">
@@ -65,9 +74,9 @@ const ProfileComponent = () => {
           alt=""
         />
         <div className="user-info flex flex-col text-center md:gap-2  ">
-          <h3 className="md:text-2xl text-md font-semibold">John Doe</h3>
+          <h3 className="md:text-2xl text-md font-semibold">{data?.first_name}</h3>
           <span className="md:text-base text-sm font-normal opacity-75">
-            john@gmail.com
+            {data?.email}
           </span>
         </div>
       </div>
@@ -75,11 +84,10 @@ const ProfileComponent = () => {
         {mainTabs.map((item, index) =>
           item?.active ? (
             <div
-              id={index === 0 ? "#account": index===2 ? "#payment": ""}
+              id={index === 0 ? "#account" : index === 2 ? "#payment" : ""}
               className="col-span-4 cursor-pointer flex justify-between py-[6px]"
               onClick={() => handleClick(index, false)}
               key={index}
-              
             >
               <h3
                 className={`font-semibold md:text-base text-xs text-[#8dd3bb]`}
@@ -108,11 +116,19 @@ const ProfileComponent = () => {
               )}
             </div>
           )
-          )}
-          <div className={`w-[29%] absolute  bottom-0 h-1 duration-300 ease-in rounded bg-[#CDEAE1] ${activeMainTab === 0 ? "left-4" : activeMainTab ===1 ? "left-[34%]" : "left-[66.5%]"}`}></div>
+        )}
+        <div
+          className={`w-[29%] absolute  bottom-0 h-1 duration-300 ease-in rounded bg-[#CDEAE1] ${
+            activeMainTab === 0
+              ? "left-4"
+              : activeMainTab === 1
+              ? "left-[34%]"
+              : "left-[66.5%]"
+          }`}
+        ></div>
       </div>
       <div className="mt-10">
-        {activeMainTab === 0  ? (
+        {activeMainTab === 0 ? (
           <UserMe />
         ) : activeMainTab === 1 ? (
           <TicketBookings />

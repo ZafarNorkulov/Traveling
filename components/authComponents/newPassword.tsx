@@ -1,77 +1,104 @@
 import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
-import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imageAuth from "../../public/images/Group 4.png";
 import Image from "next/image";
-import Google from "../../public/images/google.png";
-import FaceBook from "../../public/images/facebook.png";
-import Apple from "../../public/images/apple.png";
 import instance from "../../configs/axios";
-import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../redux/reducers/authReducer";
 import FieldSetComponent from "../filedSet";
-import { RiArrowLeftSLine } from "react-icons/ri";
 import { GreenLogo } from "../logo";
+import { useRouter } from "next/router";
 
 const NewPasswordComponent = () => {
-  const [user, setUser] = useState({
-    password: "",
-    confirmPassword: "",
-  });
-  const dispatch = useDispatch();
-  const onFinish = async () => {
-    try {
-      let res = await instance({
-        url: "/login",
-        method: "POST",
-        data: user,
-      });
-      message.success(res?.data?.msg || "Logged");
-      localStorage.setItem("accessToken", res.data.access_token);
-      dispatch(setUserInfo(res.data));
-      // router.push("/profile")
-    } catch (error: any) {
-      message.error(error?.response?.data?.msg || "UnLogged");
-      // router.push("/auth/login")
-    }
+  const router = useRouter();
+  const [userEmail, setUserEmail] = useState("");
+  useEffect(() => {
+    const localStorageEmail = localStorage.getItem("user_email");
+    setUserEmail(localStorageEmail ?? "");
+  }, []);
+
+  const onFinish = async (data: {
+    password: string;
+    confirm_password: string;
+  }) => {
+  
+      try {
+        const newData = {
+          new_password: {
+            password: data.password,
+            confirm_password: data.confirm_password,
+          },
+          email: userEmail,
+        };
+        let res = await instance({
+          url: "/site/change_password",
+          method: "POST",
+          data: newData,
+        });
+        localStorage.removeItem("user_email")
+        message.success(res?.data?.msg || "Password changed");
+        router.push("/auth/login");
+      } catch (error: any) {
+        message.error(error.response.data.detail);
+      }
+    
   };
 
   return (
     <div className="authContainer">
-      <div className="row gx-5">
-        <div className="col-lg-5 login-right">
-          <GreenLogo/>
-          <div className="backLogin-elements">
-            <Link href={"/auth/login"}>
-              <RiArrowLeftSLine style={{ fontSize: "26px" }} />
-              Back to Login
-            </Link>
-          </div>
-          <h3>Forgot your password?</h3>
-          <span className="auth-desc">
-            Don’t worry, happens to all of us. Enter your email below to recover
-            your password
+      <div className="grid grid-cols-12 gap-[104px]">
+        <div className="col-span-5 login-right">
+          <GreenLogo />
+          <h3 className="mt-[64px] text-[40px] font-bold text-black mb-4">
+            Set a password
+          </h3>
+          <span className="auth-desc opacity-75 mt-4">
+            Your previous password has been reseted. Please set a new password
+            for your account.
           </span>
-          <Form onFinish={onFinish} layout="vertical" className="mt-5 ">
+          <Form
+            onFinish={onFinish}
+            layout="vertical"
+            className="mt-12 flex flex-col gap-6 "
+          >
             <FieldSetComponent title="Create Password">
-              <Input.Password
-                value={user?.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                placeholder="Create password..."
-              />
+              <Form.Item name={"password"} className="m-0">
+                <Input.Password
+                  bordered={false}
+                  placeholder="Create password..."
+                />
+              </Form.Item>
             </FieldSetComponent>
-            <FieldSetComponent title="Re-enter Password" className="mt-2">
-              <Input.Password
-                value={user?.confirmPassword}
-                placeholder="Repeat password"
-                onChange={(e) =>
-                  setUser({ ...user, confirmPassword: e.target.value })
-                }
-              />
+            <FieldSetComponent
+              title="Re-enter Password"
+              className="mt-2 h-[53px]"
+            >
+              <Form.Item
+                name={"confirm_password"}
+                dependencies={["password"]}
+                className="m-0"
+                rules={[
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error(
+                          "The new password that you entered do not match!"
+                        )
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password
+                  bordered={false}
+                  placeholder="Repeat password"
+                />
+              </Form.Item>
             </FieldSetComponent>
-            <div className="d-flex flex-sm-row flex-column align-items-baseline justify-content-between"></div>
+
             <button
-              className="w-100 px-3 py-3 rounded auth-btn mygreen-bgColor"
+              className="w-full mt-2 px-3 py-3 rounded bg-[#8dd3bb]"
               style={{ fontWeight: 500 }}
               type="submit"
             >
@@ -79,7 +106,7 @@ const NewPasswordComponent = () => {
             </button>
           </Form>
         </div>
-        <div className="col-7 d-lg-block d-none">
+        <div className="col-span-7 lg:block hidden">
           <Carousel autoplay>
             <Image className="auth-image" src={imageAuth} alt="" />
             <Image className="auth-image" src={imageAuth} alt="" />

@@ -11,10 +11,10 @@ import Link from "next/link";
 
 const FlightDetailsCard = ({data,href}:{data:any,href?:string}) => {
   return (
-    <Link href={href ? `${href}`:""} className="flight-detail-card">
+    <Link href={href ? `${href}`:""} className="flight-detail-card mt-10">
       {data?.map((item :any,index:number) =>(
 
-      <ul className="py-8 px-6 rounded-xl self-stretch flex flex-col bg-white shadow-md" key={index}>
+      <ul className="py-8 px-6 rounded-xl self-stretch flex flex-col bg-white shadow-md mt-10" key={index}>
         {/* !TODO: backend'dan keladigan ma'lumotga'ga qarab tekshirish kerak! */}
         {item?.airplane_name &&
         (
