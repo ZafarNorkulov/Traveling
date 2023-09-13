@@ -1,5 +1,5 @@
-import { Button, Carousel, Checkbox, Form, Input, Switch, message } from "antd";
-import React, { useEffect, useState } from "react";
+import { Carousel, Checkbox, Form, Input, Switch, message } from "antd";
+import React, { useState } from "react";
 import instance from "../../configs/axios";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import imageAuth from "../../public/images/Group 4.png";
@@ -11,6 +11,7 @@ import FaceBook from "../../public/images/facebook.png";
 import Apple from "../../public/images/apple.png";
 import { GreenLogo } from "../logo";
 import { useRouter } from "next/router";
+import { PatternFormat } from "react-number-format";
 
 const RegisterComponent = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const RegisterComponent = () => {
         method: "POST",
         data: user,
       });
-      // message.success("You are logged")
+      message.success("You are logged")
         router.push("/profile")
     } catch (error: any) {
       message.error(error?.response?.data?.detail[0].msg || "Error");
@@ -37,7 +38,7 @@ const RegisterComponent = () => {
   };
 
   return (
-    <div className="authContainer ">
+    <div className="authContainer h-[100vh] overflow-hidden">
       <div className="grid grid-cols-12 gap-[104px]">
         <div className="lg:col-span-5 lg:block hidden ">
           <Carousel autoplay>
@@ -100,13 +101,8 @@ const RegisterComponent = () => {
                 />
               </FieldSetComponent>
               <FieldSetComponent title="Phone Number" className="w-full">
-                <Input
-                  bordered={false}
-                  className="w-full"
-                  value={user.phone}
-                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
-                  name="phone"
-                />
+                <PatternFormat name="phone" className="w-full py-[11px] px-[7px] outline-none bg-transparent " value={user.phone}
+                  onChange={(e) => setUser({ ...user, phone: e.target.value })} format="+998 (##) ### ## ##" allowEmptyFormatting mask="_" autoFocus />
               </FieldSetComponent>
             </div>
             <FieldSetComponent title={"Password"} className="w-full   mb-2">
@@ -162,7 +158,7 @@ const RegisterComponent = () => {
               <hr className="w-full" />
             </div>
             <div className="flex gap-3 mt-[40px]">
-              <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
+              <span className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]">
                 <Image
                   src={FaceBook}
                   className="mx-auto"
@@ -171,7 +167,7 @@ const RegisterComponent = () => {
                   alt=""
                 />
               </span>
-              <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
+              <span className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]">
                 <Image
                   src={Google}
                   className="mx-auto"
@@ -180,7 +176,7 @@ const RegisterComponent = () => {
                   alt=""
                 />
               </span>
-              <span className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]">
+              <span className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]">
                 <Image
                   src={Apple}
                   className="mx-auto"

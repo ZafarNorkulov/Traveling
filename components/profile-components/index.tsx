@@ -51,10 +51,9 @@ const ProfileComponent = () => {
   };
   const { data }:any = useGetData<IUser[]>({
     queryKey: ["user-data"],
-    url: `/user`,
+    url: `/site/me`,
     options: { refetchOnWindowFocus: false, staleTime: Infinity },
   });
-  console.log(data);
 
   return (
     <div className="relative">
@@ -129,7 +128,7 @@ const ProfileComponent = () => {
       </div>
       <div className="mt-10">
         {activeMainTab === 0 ? (
-          <UserMe />
+          <UserMe data={data} />
         ) : activeMainTab === 1 ? (
           <TicketBookings />
         ) : activeMainTab === 2 ? (

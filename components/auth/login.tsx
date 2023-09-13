@@ -9,10 +9,11 @@ import Apple from "../../public/images/apple.png";
 import Airplane from "../../public/images/airplane-auth.png";
 import instance from "../../configs/axios";
 import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../redux/reducers/authReducer";
+import { setUserInfo } from "../../store/auth";
 import { GreenLogo } from "../logo";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { signIn } from "./service.request";
 
 const FieldSetComponent = dynamic(() => import("../filedSet"), { ssr: false });
 
@@ -23,32 +24,28 @@ const LoginPage = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const onFinish = async () => {
-    try {
-      let res = await instance({
-        url: "/login",
-        method: "POST",
-        data: user,
-      });
-      message.success(res?.data?.msg || "Logged");
-      localStorage.setItem("accessToken", res.data.access_token);
-      dispatch(setUserInfo(res.data));
-      router.push("/profile")
-    } catch (error: any) {
-      message.error(error?.response?.data?.detail || "UnLogged");
-    }
-  };
+  async function onFinish(e: any) {
+    e.preventDefault();
+    console.log(e)
+    dispatch(
+      signIn({
+        email: e.target.email.value.replace("+", "").replace("(", "").replace(")", "").replaceAll(" ", ""),
+        password: e.target.password.value,
+      })
+    );
+  }
 
   return (
-    <div className="authContainer h-[100vh]">
+    <div className="authContainer h-[100vh] overflow-hidden">
       <div className="grid grid-cols-12 xl:gap-x-[104px] md:gap-x-[80px]">
         <div className="lg:col-span-5 col-span-12 h-[100vh]">
           <GreenLogo />
           <h3 className="mt-[64px] text-[40px] font-bold text-black mb-4">Login</h3>
           <span className="auth-desc text-base text-[#121] font-normal opacity-75">Login to access your Golobe account</span>
-          <Form onFinish={onFinish} layout="vertical" className="w-full mt-[48px] ">
+          <form onSubmit={onFinish}  className="w-full mt-[48px] ">
             <FieldSetComponent title="Email" className="w-full ">
               <Input
+              name="email"
               bordered={false}
               className="w-full"
                 value={user?.email}
@@ -58,6 +55,7 @@ const LoginPage = () => {
             </FieldSetComponent>
             <FieldSetComponent title="Password" className="w-full  mt-3">
               <Input.Password
+              name="password"
               bordered={false}
                className="w-full"
                 value={user?.password}
@@ -85,7 +83,7 @@ const LoginPage = () => {
             >
               Login
             </button>
-          </Form>
+          </form>
           <div className="text-center mt-4">
             <span className="already-text">
               Don’t have an account?{" "}
@@ -103,17 +101,17 @@ const LoginPage = () => {
             </div>
             <div className="flex gap-3 mt-[40px]">
               <span
-                className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]"
+                className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]"
               >
                 <Image src={FaceBook} className="mx-auto" width={24} height={24} alt="" />
               </span>
               <span
-                className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]"
+                className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]"
               >
                 <Image src={Google} className="mx-auto" width={24} height={24} alt="" />
               </span>
               <span
-                className="w-full py-3 px-4 rounded border-[1px] border-solid border-[#8DD3BB]"
+                className="w-full py-3 px-4 cursor-pointer rounded border-[1px] border-solid border-[#8DD3BB]"
               >
                 <Image src={Apple} className="mx-auto" width={24} height={24} alt="" />
               </span>

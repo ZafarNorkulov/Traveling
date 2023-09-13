@@ -9,7 +9,7 @@ import photo from "../../public/images/avatar.jpeg";
 import { BiChevronDown, BiSolidUser } from "react-icons/bi";
 import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
-import { useAppSelector } from "../../redux/service";
+import { useAppSelector } from "../../store/service";
 import SofaIcon from "../helperComponents/SofaIcon";
 import useGetData from "../../custom-hooks/getData";
 import { IUser } from "../../types/user.type";
@@ -32,10 +32,10 @@ const CHeader = () => {
     },
   ]);
 
-  const {data}:any = useGetData<IUser>({
+  const { data }: any = useGetData<IUser>({
     queryKey: ["user-data"],
-    url: "/user/list"
-  })
+    url: "/site/me",
+  });
   useEffect(() => {
     setActiveMenu(Number(localStorage.getItem("activeMenu")) ?? 0);
   }, []);
@@ -55,15 +55,15 @@ const CHeader = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const auth = useAppSelector((state) => state.auth.auth);
-console.log(auth)
+  const auth = useAppSelector((state) => state.auth);
+  console.log(auth);
   const content = (
     <div className="p-5 flex flex-col gap-y-5 w-[265px]">
       <div className="flex gap-x-4 items-center">
         <Image src={photo} className="max-w-[64px] rounded-full" alt="" />
         <div className="flex flex-col">
           <h4 className="text-base text-[#121] font-semibold select-none">
-            John Doe.
+            {data?.first_name}
           </h4>
           <span className="text-sm text-[#121] opacity-75">Online</span>
         </div>
@@ -172,7 +172,6 @@ console.log(auth)
       </div>
     </div>
   );
-// console.log(auth)
   return (
     <div className={`header`}>
       <Layout className="shadow-md">
@@ -192,10 +191,10 @@ console.log(auth)
                     key={index}
                     onClick={() => handleActiveMenu(index, false)}
                   >
-                  <div className="flex items-center gap-1">
-                  {item?.icon}
-                    {item?.label}
-                  </div>
+                    <div className="flex items-center gap-1">
+                      {item?.icon}
+                      {item?.label}
+                    </div>
                   </Link>
                 ) : (
                   <Link
@@ -205,9 +204,9 @@ console.log(auth)
                     onClick={() => handleActiveMenu(index, true)}
                   >
                     <div className="flex items-center gap-1">
-                  {item?.icon}
-                    {item?.label}
-                  </div>
+                      {item?.icon}
+                      {item?.label}
+                    </div>
                   </Link>
                 )
               )}
@@ -219,7 +218,7 @@ console.log(auth)
             </div>
             <GreenLogo />
             <div className="flex items-center gap-x-4">
-              {auth?.access_token ? (
+              {auth !== null ? (
                 <>
                   <Link href={"/favourites"}>
                     <button className="flex items-center gap-x-1 text-[#121]">
@@ -259,18 +258,21 @@ console.log(auth)
                           <BiChevronDown size={14} />
                         </div>
                       </div>
-                      {data?.first_name}
+                      {data?.first_name} {data?.last_name.slice(0, 1)}.
                     </div>
                   </Popover>
                 </>
               ) : (
                 <>
-                  <Link href={"/auth/login"} className="text-[#121] hover:text-[#121]">
+                  <Link
+                    href={"/auth/login"}
+                    className="text-[#121] hover:text-[#121]"
+                  >
                     <button className="login-btn py-[10px] text-[#121] hover:text-[#121] px-6 rounded-lg leading-normal">
                       Login
                     </button>
                   </Link>
-                  <Link href={"/auth/register"} >
+                  <Link href={"/auth/register"}>
                     <button className="sign-btn py-[10px]  px-6 rounded-lg leading-normal">
                       Sign up
                     </button>

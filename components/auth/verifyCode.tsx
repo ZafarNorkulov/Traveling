@@ -60,7 +60,7 @@ const handleResend = async()=>{
   }
 }
   return (
-    <div className="authContainer">
+    <div className="authContainer h-[100vh] overflow-hidden">
       <div className="grid grid-cols-12 gap-x-[104px]">
         <div className="lg:col-span-5 col-span-12 login-right">
           <GreenLogo/>

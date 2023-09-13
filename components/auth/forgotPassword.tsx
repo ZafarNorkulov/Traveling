@@ -43,7 +43,7 @@ const ForgotPasswordComponent = () => {
 
 
   return (
-    <div className="authContainer">
+    <div className="authContainer h-[100vh] overflow-hidden">
       <div className="grid grid-cols-12 gap-[104px]">
         <div className="col-span-5 login-right">
           <GreenLogo/>

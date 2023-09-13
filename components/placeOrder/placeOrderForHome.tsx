@@ -58,7 +58,7 @@ const PlaceOrderForHome = () => {
   };
 
   return (
-    <div className="myContainer fly">
+    <div className="px-[74px] mx-auto fly">
       <div className="grid grid-cols-12  relative gap-x-4 gap-y-8 bg-white py-8 px-6 mx-auto z-10 rounded-2xl shadow-md my-[-5%]">
         <div className="md:col-span-3 lg:col-span-4 sm:col-span-6 col-span-10  relative flex ">
           <div className="grid grid-cols-12 gap-2">

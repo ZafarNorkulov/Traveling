@@ -1,13 +1,39 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 import userLayout from '../../layouts/userLayout'
-import PlaceOrderForGuest from '../../components/placeOrder/placeOrderForGuest'
 import HotelHero from '../../components/hero/hotelHero'
 import TravelPrice from '../../components/travelPrice'
 import LocationAbout from '../../components/locationAbout'
-import RecentSearches from '../../components/recentSearches'
+import TravelList from '../../components/travelList'
+import firstPhoto from "../../public/images/firstsearch.png"
+import secondPhoto from "../../public/images/secondsearch.png"
+import thirdPhoto from "../../public/images/thirdsearch.png"
+import fourthPhoto from "../../public/images/fourthsearch.png"
+
 
 const Hotel = () => {
+  const [datas, setDatas] = useState([
+    {
+      title: "Istanbul, Turkey",
+      skills: ["Flights", "Hotels", "Resorts"],
+      img: firstPhoto,
+    },
+    {
+      title: "Sydney, Australia",
+      skills: ["Flights", "Hotels", "Resorts"],
+      img: secondPhoto,
+    },
+    {
+      title: "Baku, Azerbaijan",
+      skills: ["Flights", "Hotels", "Resorts"],
+      img: thirdPhoto,
+    },
+    {
+      title: "Malé, Maldives",
+      skills: ["Flights", "Hotels", "Resorts"],
+      img: fourthPhoto,
+    },
+  ]);
   return (
     <div>
       <Head>
@@ -16,7 +42,7 @@ const Hotel = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HotelHero/>
-      <RecentSearches/>
+      <TravelList datas={datas}/>
       <TravelPrice/>
       <LocationAbout/>
     </div>

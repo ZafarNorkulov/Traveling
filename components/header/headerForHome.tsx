@@ -14,7 +14,7 @@ import photo from "../../public/images/avatar.jpeg";
 import { BiChevronDown, BiSolidUser } from "react-icons/bi";
 import { IoCard, IoLogOut, IoSettings } from "react-icons/io5";
 import { MdSupport } from "react-icons/md";
-import { useAppSelector } from "../../redux/service";
+import { useAppSelector } from "../../store/service";
 import { WhiteLogo } from "../logo";
 import SofaIcon from "../helperComponents/SofaIcon";
 import useGetData from "../../custom-hooks/getData";
@@ -252,7 +252,7 @@ const HeaderForHome = () => {
                           <BiChevronDown size={14} />
                         </div>
                       </div>
-                     {data?.first_name}
+                     {data?.first_name || ""}
                     </div>
                   </Popover>
                 </>

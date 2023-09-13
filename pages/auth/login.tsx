@@ -1,6 +1,6 @@
 import React from 'react'
 import noneLayout from '../../layouts/noneLayout'
-import LoginPage from '../../components/authComponents/login'
+import LoginPage from '../../components/auth/login'
 import Head from 'next/head'
 const Login = () => {
   return (

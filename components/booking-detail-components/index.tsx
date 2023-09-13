@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import emirates from "../../public/images/emirates.png";
-import { useAppSelector } from "../../redux/service";
+import { useAppSelector } from "../../store/service";
 import { Breadcrumb } from "antd";
 import FlightDetailsCard from "../flight-detail/flightDetailsCard";
 import AddCardForBookingDetail from "./addCardForBookingDetail";

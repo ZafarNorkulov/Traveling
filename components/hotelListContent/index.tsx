@@ -14,7 +14,6 @@ const HotelListContent = () => {
     queryKey: ["hotel-list"],
     url: "/hotel/list"
   })
-  console.log(data)
   const [contentData,setContentData]= useState([
     {
       name: "CVK Park Bosphorus Hotel Istanbul",
